@@ -290,7 +290,7 @@ main() {
     echo "📚 Available skills: @pm, @task-decomposition, @decision-framework, @arch, @dev,"
     echo "   @guard, @qa, @self-review, @debugging, @refactoring, @api-design, @data-modeling,"
     echo "   @performance, @frontend-perf, @video-ai, @video, @writer, @seo, @perf, @ux,"
-    echo "   @confidence-scoring, @context-strategy, @error-recovery"
+    echo "   @confidence-scoring, @context-strategy, @error-recovery, @memory"
 }
 
 # Run main function

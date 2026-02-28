@@ -17,6 +17,7 @@ This is a curated collection of **highly transferable** AI agent skills (85%+ po
 - `@confidence-scoring` - When to ask for help, uncertainty assessment
 - `@context-strategy` - Managing limited context windows efficiently
 - `@error-recovery` - Handling failures autonomously
+- `@memory` - Persisting state across long sessions using a working buffer
 
 ### Coding (95% Transferable)
 - `@arch` - Architecture and design decisions
@@ -374,7 +375,7 @@ This library is actively maintained. Skills are updated based on:
 
 ---
 
-**Version:** 3.1.1  
-**Last Updated:** 2026-02-28  
-**Skills:** 28 total (27 transferable + 1 Remotion-specific)  
+**Version:** 3.1.2  
+**Last Updated:** 2026-03-01  
+**Skills:** 29 total (28 transferable + 1 Remotion-specific)  
 **Compatibility:** Universal AI assistants

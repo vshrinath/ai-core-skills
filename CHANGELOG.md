@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [2026-03-01] — v3.3.0: Add @memory skill for persistent state and working buffer
+
+### What changed
+- Created new `@memory` skill (`meta/memory.md`) to handle state persistence between sessions.
+- Implemented a Write-Ahead Log (WAL) protocol and Working Buffer pattern.
+- Skill instructs the AI to maintain a `.ai-memory.md` file (which should be `.gitignore`d).
+- Added `@memory` to `INDEX.md`, `README.md`, and `setup.sh`.
+- Updated total skill count to 29 (28 transferable + 1 framework-specific).
+
+### Why
+Standard AI coding agents lose context resets between sessions and suffer from context dilution on long tasks. This skill externalizes the AI's "working memory" into a persistent file, allowing it to seamlessly resume complex refactors or multi-day tasks without losing its place or hallucinating previous steps.
+
+### Files touched
+- `meta/memory.md` — Created new skill
+- `INDEX.md` — Added `@memory`, updated counts
+- `README.md` — Added `@memory`, updated counts, bumped version to 3.1.2
+- `setup.sh` — Added `@memory` to the available skills output
+
+---
+
 ## [2026-02-28] — Clarify skill precedence, default routing, and overlap boundaries
 
 ### What changed

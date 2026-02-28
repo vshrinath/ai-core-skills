@@ -1,6 +1,6 @@
 # AI Core Skills - Index
 
-**27 highly transferable skills (85%+ portability) + 1 framework-specific skill (Remotion)**
+**28 highly transferable skills (85%+ portability) + 1 framework-specific skill (Remotion)**
 
 ---
 
@@ -50,6 +50,7 @@
 | `@confidence-scoring` | `meta/confidence-scoring.md` | Assessing confidence level, determining when to ask for help | 100% |
 | `@context-strategy` | `meta/context-strategy.md` | Managing limited context window, efficient file navigation | 100% |
 | `@error-recovery` | `meta/error-recovery.md` | Handling test/build/deployment failures autonomously | 100% |
+| `@memory` | `meta/memory.md` | Persisting state and execution plans across long sessions using a working buffer | 100% |
 
 ### Coding
 
@@ -118,6 +119,7 @@ Secondary skills are invoked *alongside* a primary skill, not instead of one.
 | Assessing task difficulty | `@confidence-scoring` |
 | Managing large codebase navigation | `@context-strategy` |
 | Handling failures or errors | `@error-recovery` |
+| Working on complex, multi-step, or multi-day tasks | `@memory` |
 
 ---
 
@@ -196,5 +198,5 @@ git submodule add https://github.com/vshrinath/ai-core-skills.git skills
 git submodule update --init
 
 # Load core skills for any project
-echo "Skills available: @pm @task-decomposition @decision-framework @arch @dev @guard @qa @self-review @debugging @refactoring @api-design @data-modeling @performance @frontend-perf @testing @video-ai @writer @seo @perf @ux @accessibility @cloud"
+echo "Skills available: @pm @task-decomposition @decision-framework @arch @dev @guard @qa @self-review @debugging @refactoring @api-design @data-modeling @performance @frontend-perf @testing @video-ai @writer @seo @perf @ux @accessibility @cloud @memory"
 ```
