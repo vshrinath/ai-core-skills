@@ -5,7 +5,7 @@
 
 set -e
 
-REPO_URL="https://github.com/vshrinath/ai-agent-skills-golden.git"
+REPO_URL="https://github.com/vshrinath/ai-core-skills.git"
 SKILLS_DIR="skills"
 CONFIG_DIR=".ai-config"
 
@@ -138,6 +138,12 @@ setup_claude() {
 }
 EOF
     
+    # Create symlink for Claude Code (expects claude.md)
+    if [ -f "AGENTS.md" ]; then
+        ln -sf AGENTS.md claude.md
+        print_success "Created claude.md symlink for Claude Code"
+    fi
+    
     print_success "Claude Desktop configuration updated"
 }
 
@@ -225,6 +231,17 @@ gemini --context-file AGENTS.md --context-file CONVENTIONS.md --context-dir skil
 Load skills by referencing the markdown files in skills/ directory.
 EOF
     
+    # Create symlinks for Gemini CLI (may expect specific names)
+    if [ -f "AGENTS.md" ]; then
+        ln -sf AGENTS.md gemini-rules.md
+        print_success "Created gemini-rules.md symlink"
+    fi
+    
+    if [ -f "CONVENTIONS.md" ]; then
+        ln -sf CONVENTIONS.md gemini-conventions.md
+        print_success "Created gemini-conventions.md symlink"
+    fi
+    
     print_success "Gemini CLI configuration created"
 }
 
@@ -246,7 +263,50 @@ setup_antigravity() {
 Include skills directory and configuration files in Antigravity context.
 EOF
     
+    # Create symlinks for Antigravity (may expect specific names)
+    if [ -f "AGENTS.md" ]; then
+        ln -sf AGENTS.md antigravity-rules.md
+        print_success "Created antigravity-rules.md symlink"
+    fi
+    
+    if [ -f "CONVENTIONS.md" ]; then
+        ln -sf CONVENTIONS.md antigravity-conventions.md
+        print_success "Created antigravity-conventions.md symlink"
+    fi
+    
     print_success "Antigravity configuration created"
+}
+
+# Setup Codex configuration
+setup_codex() {
+    print_status "Setting up Codex configuration..."
+    
+    mkdir -p "$CONFIG_DIR"
+    
+    cat > "$CONFIG_DIR/codex-config.md" << 'EOF'
+# Codex Configuration
+
+## Skills Integration
+- Skills location: skills/
+- Configuration: AGENTS.md, CONVENTIONS.md
+- Usage: Reference skills by @skill-name
+
+## Setup
+Include skills directory and configuration files in Codex context.
+EOF
+    
+    # Create symlinks for Codex (may expect specific names)
+    if [ -f "AGENTS.md" ]; then
+        ln -sf AGENTS.md codex-rules.md
+        print_success "Created codex-rules.md symlink"
+    fi
+    
+    if [ -f "CONVENTIONS.md" ]; then
+        ln -sf CONVENTIONS.md codex-conventions.md
+        print_success "Created codex-conventions.md symlink"
+    fi
+    
+    print_success "Codex configuration created"
 }
 
 # Create project-specific skills directory
@@ -308,7 +368,7 @@ main() {
                 echo "  --submodule    Setup skills as git submodule (default)"
                 echo "  --clone        Setup skills as direct clone"
                 echo "  --tools TOOLS  Comma-separated list of tools to configure"
-                echo "                 Options: cursor,claude,windsurf,copilot,gemini,antigravity,all"
+                echo "                 Options: cursor,claude,windsurf,copilot,gemini,antigravity,codex,all"
                 echo "  --help         Show this help message"
                 echo
                 echo "Examples:"
@@ -344,6 +404,7 @@ main() {
         setup_copilot
         setup_gemini
         setup_antigravity
+        setup_codex
     else
         IFS=',' read -ra TOOL_ARRAY <<< "$TOOLS"
         for tool in "${TOOL_ARRAY[@]}"; do
@@ -366,6 +427,9 @@ main() {
                 antigravity)
                     setup_antigravity
                     ;;
+                codex)
+                    setup_codex
+                    ;;
                 *)
                     print_warning "Unknown tool: $tool"
                     ;;
@@ -383,10 +447,12 @@ main() {
     echo
     echo "🔧 Tool-specific usage:"
     echo "- Cursor: Skills loaded automatically via .cursor/rules.md"
-    echo "- Claude: Reference skills with @skill-name"
+    echo "- Claude: Reference skills with @skill-name (claude.md symlink created)"
     echo "- Windsurf: Use @skill-name syntax"
     echo "- Copilot: Reference .github/copilot-instructions.md"
-    echo "- Gemini: Use --context-file and --context-dir flags"
+    echo "- Gemini: Use --context-file flags (gemini-rules.md symlink created)"
+    echo "- Antigravity: Use --include flags (antigravity-rules.md symlink created)"
+    echo "- Codex: Use context files (codex-rules.md symlink created)"
     echo
     echo "📚 Available skills:"
     echo "Product: @pm, @task-decomposition, @decision-framework"

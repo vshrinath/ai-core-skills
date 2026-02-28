@@ -1,4 +1,4 @@
-# AI Agent Skills - Golden Set
+# AI Core Skills
 
 A portable library of role-based AI agent skills for software development and content projects. Compatible with Claude, Cursor, Copilot, Windsurf, and other AI assistants.
 
@@ -45,10 +45,10 @@ This is a curated collection of **highly transferable** AI agent skills (85%+ po
 
 ```bash
 # In your project root
-curl -sSL https://raw.githubusercontent.com/vshrinath/ai-agent-skills-golden/master/setup.sh | bash
+curl -sSL https://raw.githubusercontent.com/vshrinath/ai-core-skills/main/setup.sh | bash
 
 # Or download and run manually
-wget https://raw.githubusercontent.com/vshrinath/ai-agent-skills-golden/master/setup.sh
+wget https://raw.githubusercontent.com/vshrinath/ai-core-skills/main/setup.sh
 chmod +x setup.sh
 ./setup.sh
 ```
@@ -65,7 +65,7 @@ This will:
 
 ```bash
 # In your project root
-git submodule add https://github.com/vshrinath/ai-agent-skills-golden.git skills
+git submodule add https://github.com/vshrinath/ai-core-skills.git skills
 
 # Initialize and update
 git submodule update --init --recursive
@@ -81,8 +81,8 @@ cp skills/CONVENTIONS.md .
 
 ```bash
 # Copy entire library
-git clone https://github.com/vshrinath/ai-agent-skills-golden.git
-cp -r ai-agent-skills-golden/ your-project/skills/
+git clone https://github.com/vshrinath/ai-core-skills.git
+cp -r ai-core-skills/ your-project/skills/
 rm -rf your-project/skills/.git
 
 # Copy configuration files
@@ -130,6 +130,7 @@ your-project/
 ### Claude Desktop
 ```bash
 # Skills referenced via system prompt
+# claude.md symlink created automatically
 Load skills: @pm, @dev, @guard, @qa
 
 Task: Add user authentication to the dashboard
@@ -154,17 +155,23 @@ Help me implement user authentication following our project patterns
 
 ### Gemini CLI
 ```bash
-# Use context flags
-gemini --context-file AGENTS.md \
-       --context-file CONVENTIONS.md \
+# Use context flags (symlinks created automatically)
+gemini --context-file gemini-rules.md \
+       --context-file gemini-conventions.md \
        --context-dir skills/ \
        "Help me implement user authentication"
 ```
 
 ### Antigravity
 ```bash
-# Include skills in context
-antigravity --include skills/ --include AGENTS.md --include CONVENTIONS.md
+# Include skills in context (symlinks created automatically)
+antigravity --include skills/ --include antigravity-rules.md --include antigravity-conventions.md
+```
+
+### Codex
+```bash
+# Use context files (symlinks created automatically)
+codex --context-file codex-rules.md --context-file codex-conventions.md --context-dir skills/
 ```
 
 ## Updating Skills Across All Projects
@@ -185,7 +192,7 @@ git commit -m "update: latest AI agent skills"
 ```bash
 # Re-copy updated skills
 rm -rf skills/
-cp -r /path/to/ai-agent-skills-golden/ skills/
+cp -r /path/to/ai-core-skills/ skills/
 ```
 
 ## Customization

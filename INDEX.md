@@ -1,4 +1,4 @@
-# AI Agent Skills - Golden Set Index
+# AI Core Skills - Index
 
 **18 highly transferable skills (85%+ portability across projects)**
 
@@ -203,7 +203,7 @@ I need to add user authentication. Help me scope it first, then implement secure
 
 ```bash
 # New project setup
-git submodule add https://github.com/your-username/ai-agent-skills-golden.git skills
+git submodule add https://github.com/vshrinath/ai-core-skills.git skills
 git submodule update --init
 
 # Load core skills for any project
