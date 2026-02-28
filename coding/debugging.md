@@ -273,18 +273,16 @@ if cache.add('lock', True, timeout=60):  # add() is atomic
 
 ### Timezone Issues
 
-```python
-# ❌ Naive datetime (no timezone)
-from datetime import datetime
-now = datetime.now()  # What timezone?
+```javascript
+// ❌ Naive datetime (relies on server local time)
+const now = new Date(); // What timezone?
 
-# ✅ Timezone-aware datetime
-from django.utils import timezone
-now = timezone.now()  # Always UTC
+// ✅ UTC datetime for storage and backend logic
+const nowUTC = new Date().toISOString();
 
-# ✅ Convert to user's timezone for display
-from django.utils.timezone import localtime
-user_time = localtime(now, user.timezone)
+// ✅ Convert to user's timezone only at the display layer
+const formatter = new Intl.DateTimeFormat('en-US', { timeZone: user.timezone });
+const userTime = formatter.format(new Date(nowUTC));
 ```
 
 ### String Encoding
@@ -304,39 +302,34 @@ text = response.content.decode('utf-8', errors='replace')
 
 ## Debugging Tools
 
-### Python Debugger (pdb)
+### Interactive Debuggers (pdb, node --inspect, delve, etc.)
 
 ```python
-# Add breakpoint
+# Add breakpoint in Python
 import pdb; pdb.set_trace()
-
-# Or use built-in breakpoint() (Python 3.7+)
+# Or Python 3.7+
 breakpoint()
 
-# Commands:
-# n (next): Execute next line
-# s (step): Step into function
-# c (continue): Continue execution
-# p variable: Print variable value
-# l (list): Show current code
-# q (quit): Exit debugger
+# Add breakpoint in JavaScript/Node
+debugger;
 ```
 
-### Django Debug Toolbar
+**Common Commands:**
+- Step over: Execute next line
+- Step into: Go inside function call
+- Continue: Run until next breakpoint
+- Evaluate: Inspect variable values in current scope
 
-```python
-# settings.py
-INSTALLED_APPS += ['debug_toolbar']
-MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
-INTERNAL_IPS = ['127.0.0.1']
+### Application Profilers & Toolbars
 
-# Shows:
-# - SQL queries (with EXPLAIN)
-# - Template rendering time
-# - Cache hits/misses
-# - Signal calls
-# - Request/response headers
-```
+Most major frameworks have debugging middleware or toolbars (e.g., Django Debug Toolbar, Laravel Debugbar, Rack Mini Profiler).
+
+**What they show:**
+- SQL queries (with execution time and EXPLAIN plan)
+- Template/Component rendering time
+- Cache hits/misses
+- Memory usage
+- Request/response headers
 
 ### Browser DevTools
 

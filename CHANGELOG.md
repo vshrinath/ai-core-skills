@@ -4,6 +4,75 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [2026-02-28] — v3.1.0: Fix contract inconsistencies, add 3 skills, symlink .kiro/skills
+
+### What changed
+- Fixed `@frontend-performance` → `@frontend-perf` mismatch in AGENTS.md, INDEX.md, README.md, setup.sh
+- Fixed `@ops` references → `@cloud` in decision-framework.md, task-decomposition.md, CONVENTIONS.md
+- Fixed `RELEASE_NOTES.md` → `CHANGELOG.md` in guard.md, cicd-pipelines.md
+- Fixed `.cursorules` → `.cursorrules` typo in setup.sh
+- Fixed README direct-copy path instructions (`cp skills/AGENTS.md .` after cloning to `ai-core-skills/`)
+- Fixed README nested code fence rendering (triple → quadruple backticks for outer fence)
+- Fixed brand bootstrap: now checks for `brand/brand.md` instead of `brand/` directory existence
+- Added 3 new skills to catalogs: `@testing`, `@accessibility`, `@cloud`
+- Replaced `.kiro/skills/` copied files with symlinks to root-level skill folders
+- Updated skill count: 28 total (27 transferable + 1 Remotion-specific)
+
+### Why
+Codex review identified contract inconsistencies (skill name mismatches, phantom `@ops` skill, catalog drift, setup typos, broken README paths) that would cause agent invocation failures and setup friction. All three AI reviews (Kiro, Gemini, Codex) are now addressed.
+
+### Files touched
+- `AGENTS.md` — @frontend-perf fix, added @testing, @accessibility, @cloud to skill list
+- `INDEX.md` — @frontend-perf fix, added @testing, @accessibility, @cloud to tables
+- `README.md` — @frontend-perf fix, path fix, code fence fix, added 3 skills, updated version
+- `CONVENTIONS.md` — @ops → @cloud, removed @ops-aws example
+- `setup.sh` — .cursorrules typo, @frontend-perf in echo, brand bootstrap fix
+- `coding/guard.md` — RELEASE_NOTES.md → CHANGELOG.md
+- `ops/cicd-pipelines.md` — RELEASE_NOTES.md → CHANGELOG.md
+- `product/decision-framework.md` — @ops → @cloud
+- `product/task-decomposition.md` — @ops → @cloud
+- `coding/testing.md` — New skill (added by Gemini, now in catalogs)
+- `design/accessibility.md` — New skill (added by Gemini, now in catalogs)
+- `ops/cloud.md` — New skill (added by Gemini, now in catalogs)
+- `.kiro/skills/*` — Replaced copied files with symlinks to root folders
+
+---
+
+## [2026-02-28] — Address review feedback: reduce framework bias, improve agent reliability
+
+### What changed
+- Rule 3: Added "verify third-party APIs" — agents must not assume library methods from memory
+- Skills System: Added handoff artifact requirement with example format
+- @dev: Added linter/formatter as verification step for all changes
+- @dev: Added "Editing Strategy" section — surgical edits, not full file rewrites
+- @dev: Added "Environment Verification" section — check Docker, venvs, env vars before running commands
+- @refactoring: Added full-file-rewrite anti-pattern to "Small Steps" principle
+- @self-review: Deduplicated with @guard (Gemini) — references guard checklist instead of duplicating
+- @data-modeling: Removed Django/Prisma framework-specific sections (Gemini)
+- @guard, @debugging: Generalized security/debugging examples to be language-neutral (Gemini)
+- @git-workflow: Softened changelog rule for projects using automated release notes (Gemini)
+- setup.sh: Kiro skills now symlinked instead of copied; brand.md created from template (Gemini)
+- CONVENTIONS.md: Added note that examples are illustrative (Gemini)
+- README.md: Added monorepo setup guidance (Gemini)
+
+### Why
+Both Kiro and Gemini reviews identified framework-specific bias in "transferable" skills, duplicated checklists between @self-review and @guard, and missing guidance for common agent failure modes (API hallucination, full-file rewrites, environment mismatches, context loss between handoffs).
+
+### Files touched
+- `AGENTS.md` — Rule 3 third-party API check, handoff artifact requirement
+- `coding/dev.md` — Linter verification step, editing strategy, environment verification
+- `coding/refactoring.md` — Full-file-rewrite anti-pattern
+- `coding/self-review.md` — Deduplicated with @guard (Gemini)
+- `coding/data-modeling.md` — Removed framework sections (Gemini)
+- `coding/guard.md` — Language-neutral security examples (Gemini)
+- `coding/debugging.md` — Generalized debugging tools (Gemini)
+- `coding/git-workflow.md` — Flexible changelog rule (Gemini)
+- `setup.sh` — Symlinks for Kiro, brand.md creation (Gemini)
+- `CONVENTIONS.md` — Illustrative examples note (Gemini)
+- `README.md` — Monorepo section (Gemini)
+
+---
+
 ## [2026-02-28] — Simplify AGENTS.md to 13 universal principles, move practices to skills
 
 **Commit**: `pending` on branch `master`

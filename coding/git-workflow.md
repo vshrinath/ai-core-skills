@@ -62,7 +62,7 @@
 
 ## Changelog Maintenance
 
-**Every commit must append to `CHANGELOG.md`. This is non-negotiable.**
+**If the project maintains a manual `CHANGELOG.md`, append significant features and fixes to it. If the project uses automated release notes (e.g., semantic-release), ensure your commit messages comply with its standards.**
 
 ### Format
 
@@ -85,7 +85,7 @@
 
 ### Rules
 - **Append, never overwrite.** New entries go at the top of the file, below the header
-- **One entry per commit.** If a commit touches multiple features, list them all in one entry
+- **Group logically.** If a commit touches multiple features, list them all in one entry
 - **Be specific, not vague.** "Fixed search" is useless. "Fixed search returning empty results when index is empty instead of falling back to database query" is useful
 - **Include file paths.** This makes it possible to trace back from changelog to code
 

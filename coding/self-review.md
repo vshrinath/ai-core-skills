@@ -20,286 +20,20 @@
 
 ## Self-Review Checklist
 
-### 1. Does It Work?
+Instead of maintaining a separate checklist, **run through the exact same comprehensive checklist defined in `@guard`** (`coding/guard.md` -> Code Review Checklist).
 
-- [ ] All tests pass locally
-- [ ] Manual testing completed for happy path
-- [ ] Edge cases tested
-- [ ] Error cases tested
-- [ ] Works in development environment
-- [ ] No console errors or warnings
+Your goal in self-review is to catch every issue that `@guard` would flag before handing the code over.
 
-**Test:**
-```bash
-# Run full test suite
-pytest  # or npm test, go test, etc.
-
-# Check for warnings
-# No "DeprecationWarning", "TODO", or "FIXME" in output
-
-# Manual testing
-# Actually use the feature like a user would
-```
-
-### 2. Is It Correct?
-
-- [ ] Logic is sound
-- [ ] No off-by-one errors
-- [ ] Null/None values handled
-- [ ] Edge cases covered
-- [ ] Race conditions prevented
-- [ ] Timezone handling correct
-- [ ] String encoding handled
-
-**Common mistakes to check:**
-```
-# ❌ Off-by-one — iterating to len-1 misses the last item
-for i in range(0, length - 1): ...   # should be range(0, length)
-
-# ❌ Null not handled — calling methods on a value that may be null/nil/None
-user.email.toLowerCase()   # crashes if email is null
-
-# ❌ Race condition — two processes can both pass the check before either writes
-if not lock_exists():
-    set_lock()   # gap between check and set
-
-# ❌ Timezone naive — datetime without timezone info produces wrong results
-now = current_time()   # which timezone?
-```
-
-### 3. Is It Secure?
-
-- [ ] No hardcoded secrets
-- [ ] User input validated
-- [ ] SQL injection prevented
-- [ ] XSS prevented
-- [ ] Authentication required (if needed)
-- [ ] Authorization checked (if needed)
-- [ ] Sensitive data encrypted
-- [ ] No secrets in logs
-
-**Security checklist:**
-```python
-# ✓ Parameterized queries
-cursor.execute("SELECT * FROM users WHERE id = %s", [user_id])
-
-# ✓ Input validation
-if not email or '@' not in email:
-    raise ValueError("Invalid email")
-
-# ✓ Authentication
-@permission_classes([IsAuthenticated])
-
-# ✓ Authorization
-if request.user.id != resource.owner_id:
-    return Response(status=403)
-```
-
-### 4. Is It Performant?
-
-- [ ] No N+1 queries (backend)
-- [ ] Indexes exist on filtered columns (backend)
-- [ ] Large datasets paginated (backend)
-- [ ] Expensive operations cached (backend)
-- [ ] No unnecessary data loaded (backend)
-- [ ] Frontend bundle size reasonable (see `@frontend-perf`)
-- [ ] Images optimized (see `@frontend-perf`)
-
-**Performance checklist:**
-```
-# Backend (see @performance for details)
-# ✓ Eager-load related records to avoid N+1 queries
-# ✓ Paginate large result sets — never return unbounded lists
-# ✓ Cache expensive queries with a TTL
-# ✓ Select only the fields you need, not SELECT *
-
-# Frontend (see @frontend-perf for details)
-# ✓ Specify image dimensions to prevent layout shift
-# ✓ Code-split heavy components so they don't block initial load
-# ✓ Lazy-load below-fold images and components
-```
-
-### 5. Is It Readable?
-
-- [ ] Variable names are clear
-- [ ] Function names describe what they do
-- [ ] No magic numbers
-- [ ] No deep nesting (< 3 levels)
-- [ ] Functions are small (< 50 lines)
-- [ ] Comments explain "why", not "what"
-- [ ] No commented-out code
-
-**Readability checklist:**
-```python
-# ❌ Unclear
-def calc(x, y, z):
-    return x * y * z * 0.1
-
-# ✅ Clear
-def calculate_discount(price, quantity, discount_rate):
-    return price * quantity * discount_rate
-
-# ❌ Magic number
-if user.age < 18:
-
-# ✅ Named constant
-MINIMUM_AGE = 18
-if user.age < MINIMUM_AGE:
-```
-
-### 6. Is It Tested?
-
-- [ ] Unit tests exist
-- [ ] Tests cover happy path
-- [ ] Tests cover edge cases
-- [ ] Tests cover error cases
-- [ ] Test names are descriptive
-- [ ] Tests are independent
-- [ ] No flaky tests
-
-**Test coverage checklist:**
-```python
-# Happy path
-def test_create_user_success():
-    user = create_user("john@example.com", "password123")
-    assert user.email == "john@example.com"
-
-# Edge case
-def test_create_user_with_empty_email():
-    with pytest.raises(ValueError):
-        create_user("", "password123")
-
-# Error case
-def test_create_user_with_duplicate_email():
-    create_user("john@example.com", "password123")
-    with pytest.raises(IntegrityError):
-        create_user("john@example.com", "password456")
-```
-
-### 7. Is It Documented?
-
-- [ ] README updated (if needed)
-- [ ] API documentation updated
-- [ ] Complex logic explained in comments
-- [ ] Migration notes (if schema changed)
-- [ ] Changelog or release notes updated (if the project maintains one)
-- [ ] Docstrings for public functions
-
-**Documentation checklist:**
-```python
-# ✓ Docstring for public function
-def calculate_discount(price: float, quantity: int) -> float:
-    """
-    Calculate discount amount for bulk orders.
-    
-    Args:
-        price: Unit price
-        quantity: Number of items
-        
-    Returns:
-        Discount amount (10% for orders > 10 items)
-    """
-    if quantity > 10:
-        return price * quantity * 0.1
-    return 0
-
-# ✓ Comment for non-obvious logic
-# We use exponential backoff here because the API rate limits
-# aggressively after 3 failed attempts
-for attempt in range(5):
-    try:
-        return api_call()
-    except RateLimitError:
-        time.sleep(2 ** attempt)
-```
-
-### 8. Does It Follow Conventions?
-
-- [ ] Matches project code style
-- [ ] Follows naming conventions
-- [ ] Uses project patterns
-- [ ] No new patterns without justification
-- [ ] Linting passes
-- [ ] Formatting consistent
-
-**Convention checklist:**
-```python
-# Check project conventions
-# - File naming: snake_case or kebab-case?
-# - Import order: stdlib, third-party, local?
-# - Quote style: single or double?
-# - Line length: 80 or 120?
-
-# Run linter
-ruff check .  # or eslint, golangci-lint, etc.
-
-# Run formatter
-black .  # or prettier, gofmt, etc.
-```
-
-### 9. Is It Maintainable?
-
-- [ ] No duplicated code
-- [ ] Functions have single responsibility
-- [ ] Classes have single responsibility
-- [ ] Dependencies are minimal
-- [ ] No circular dependencies
-- [ ] Easy to modify in future
-
-**Maintainability checklist:**
-```python
-# ❌ Duplicated code
-def create_user(name, email):
-    user = User()
-    user.name = name
-    user.email = email
-    user.created_at = timezone.now()
-    user.save()
-
-def create_admin(name, email):
-    user = User()
-    user.name = name
-    user.email = email
-    user.created_at = timezone.now()
-    user.is_admin = True
-    user.save()
-
-# ✅ DRY (Don't Repeat Yourself)
-def create_user(name, email, is_admin=False):
-    return User.objects.create(
-        name=name,
-        email=email,
-        created_at=timezone.now(),
-        is_admin=is_admin
-    )
-```
-
-### 10. Is It Safe to Deploy?
-
-- [ ] Backward compatible (or feature flagged)
-- [ ] Database migrations are reversible
-- [ ] No breaking API changes (or versioned)
-- [ ] Rollback plan exists
-- [ ] Monitoring/logging added
-- [ ] Error handling in place
-
-**Deployment safety checklist:**
-```python
-# ✓ Feature flag for risky changes
-if settings.FEATURE_NEW_SEARCH_ENABLED:
-    return new_search(query)
-else:
-    return old_search(query)
-
-# ✓ Backward compatible migration
-# Step 1: Add new field (nullable)
-# Step 2: Backfill data
-# Step 3: Make field non-nullable
-# Step 4: Remove old field
-
-# ✓ Logging for debugging
-logger.info(f"Processing payment for user {user.id}, amount {amount}")
-```
+**Core areas to verify from the `@guard` checklist:**
+1. **Security:** No hardcoded secrets, input validated, safe queries, proper auth.
+2. **Correctness:** Logic sound, edge cases and nulls handled, no off-by-one errors.
+3. **Performance:** Efficient queries, no N+1, optimized bundles, lazy loading.
+4. **Code Quality:** Small functions, clear names, DRY, no magic numbers.
+5. **Testing:** Unit tests pass, edge cases covered, mocks used appropriately.
+6. **Error Handling:** Fail loud, helpful messages, no swallowed exceptions.
+7. **Documentation:** READMEs, API docs, and architecture notes updated.
+8. **Conventions:** Follows `CONVENTIONS.md`, passes all linters and formatters.
+9. **Deployment Safety:** Backward-compatible migrations, feature flagged if risky.
 
 ---
 
@@ -323,19 +57,19 @@ Questions to ask:
 
 ```bash
 # Tests
-pytest
+npm test # or pytest, go test
 
 # Linting
-ruff check .
+npm run lint # or ruff, eslint
 
 # Type checking
-mypy .
+tsc --noEmit # or mypy, pyright
 
 # Security scan
-bandit -r .
+npm audit # or bandit, trivy
 
 # Formatting
-black --check .
+npm run format:check # or black, prettier
 ```
 
 ### Step 3: Manual Testing
@@ -399,55 +133,64 @@ git status
 ## Common Self-Review Findings
 
 ### Security Issues
-```python
-# Found: Hardcoded secret
-API_KEY = "sk-1234567890"
+```javascript
+// Found: Hardcoded secret
+const API_KEY = "sk-1234567890";
 
-# Fixed: Use environment variable
-API_KEY = os.environ.get('API_KEY')
-if not API_KEY:
-    raise ValueError("API_KEY environment variable required")
+// Fixed: Use environment variable
+const API_KEY = process.env.API_KEY;
+if (!API_KEY) {
+    throw new Error("API_KEY environment variable required");
+}
 ```
 
 ### Performance Issues
-```python
-# Found: N+1 query
-articles = Article.objects.all()
-for article in articles:
-    print(article.author.name)  # Hits DB each time
+```javascript
+// Found: N+1 query (Looping queries)
+const articles = await db.articles.findMany();
+for (const article of articles) {
+    const author = await db.authors.findUnique({ where: { id: article.authorId } });
+    console.log(author.name); // Hits DB for every article! // Hits DB each time
+}
 
-# Fixed: Use select_related
-articles = Article.objects.select_related('author').all()
-for article in articles:
-    print(article.author.name)  # No additional queries
+// Fixed: Eager loading (JOIN)
+const articles = await db.articles.findMany({ include: { author: true } });
+for (const article of articles) {
+    console.log(article.author.name); // No additional queries
+}
 ```
 
 ### Logic Errors
-```python
-# Found: Off-by-one error
-for i in range(len(items) - 1):
-    process(items[i])  # Misses last item!
+```javascript
+// Found: Off-by-one error
+for (let i = 0; i < items.length - 1; i++) {
+    process(items[i]); // Misses last item!
+}
 
-# Fixed: Correct range
-for i in range(len(items)):
-    process(items[i])
+// Fixed: Correct range
+for (let i = 0; i < items.length; i++) {
+    process(items[i]);
+}
 
-# Better: Use item directly
-for item in items:
-    process(item)
+// Better: Direct iteration
+for (const item of items) {
+    process(item);
+}
 ```
 
 ### Missing Error Handling
-```python
-# Found: No error handling
-data = json.loads(response.text)
+```javascript
+// Found: No error handling
+const data = JSON.parse(responseText);
 
-# Fixed: Handle errors
-try:
-    data = json.loads(response.text)
-except json.JSONDecodeError as e:
-    logger.error(f"Invalid JSON response: {e}")
-    return None
+// Fixed: Handle errors
+try {
+    const data = JSON.parse(responseText);
+    return data;
+} catch (error) {
+    logger.error(`Invalid JSON response: ${error.message}`);
+    return null;
+}
 ```
 
 ---

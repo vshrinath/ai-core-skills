@@ -358,7 +358,7 @@ jobs:
           tag_name: ${{ steps.version.outputs.VERSION }}
           release_name: Release ${{ steps.version.outputs.VERSION }}
           body: |
-            See [RELEASE_NOTES.md](https://github.com/${{ github.repository }}/blob/main/docs/RELEASE_NOTES.md) for details.
+            See [CHANGELOG.md](https://github.com/${{ github.repository }}/blob/main/CHANGELOG.md) for details.
           draft: false
           prerelease: false
       

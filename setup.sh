@@ -124,7 +124,7 @@ setup_all_tools() {
     # Cursor
     mkdir -p .cursor
     ln -sf ../AGENTS.md .cursor/rules.md 2>/dev/null || true
-    ln -sf AGENTS.md .cursorules 2>/dev/null || true
+    ln -sf AGENTS.md .cursorrules 2>/dev/null || true
     
     # GitHub Copilot
     mkdir -p .github
@@ -164,19 +164,33 @@ setup_kiro() {
         source_dir="$SKILLS_DIR"
     fi
     
-    # Copy skills from source to Kiro's expected location
+    # Symlink skills from source to Kiro's expected location
     if [ -d "$source_dir/coding" ]; then
-        cp -r "$source_dir"/coding "$source_dir"/design "$source_dir"/marketing "$source_dir"/meta "$source_dir"/ops "$source_dir"/product .kiro/skills/ 2>/dev/null || true
-        print_success "Skills copied to .kiro/skills/"
+        # We need relative paths for symlinks to work correctly
+        local rel_source="../../"
+        if [ "$IS_SOURCE_REPO" = false ] && [ -d "$SKILLS_DIR" ]; then
+            rel_source="../../$SKILLS_DIR/"
+        fi
+        
+        ln -sf "${rel_source}coding" .kiro/skills/coding 2>/dev/null || true
+        ln -sf "${rel_source}design" .kiro/skills/design 2>/dev/null || true
+        ln -sf "${rel_source}marketing" .kiro/skills/marketing 2>/dev/null || true
+        ln -sf "${rel_source}meta" .kiro/skills/meta 2>/dev/null || true
+        ln -sf "${rel_source}ops" .kiro/skills/ops 2>/dev/null || true
+        ln -sf "${rel_source}product" .kiro/skills/product 2>/dev/null || true
+        print_success "Skills symlinked to .kiro/skills/"
     fi
     
-    # Copy brand template if it doesn't exist
-    if [ ! -d "brand" ] && [ -d "$source_dir/brand" ]; then
+    # Copy brand template if brand.md doesn't exist
+    if [ ! -f "brand/brand.md" ] && [ -d "$source_dir/brand" ]; then
         mkdir -p brand/assets
-        cp "$source_dir/brand/brand-template.md" brand/
-        cp "$source_dir/brand/README.md" brand/
+        cp "$source_dir/brand/brand-template.md" brand/brand.md
+        cp "$source_dir/brand/brand-template.md" brand/brand-template.md
+        if [ -f "$source_dir/brand/README.md" ]; then
+            cp "$source_dir/brand/README.md" brand/
+        fi
         touch brand/assets/.gitkeep
-        print_success "Brand template copied to brand/"
+        print_success "Brand template copied to brand/brand.md"
     fi
     
     # Symlink AGENTS.md to Kiro steering
@@ -275,7 +289,7 @@ main() {
     echo
     echo "📚 Available skills: @pm, @task-decomposition, @decision-framework, @arch, @dev,"
     echo "   @guard, @qa, @self-review, @debugging, @refactoring, @api-design, @data-modeling,"
-    echo "   @performance, @frontend-performance, @video-ai, @video, @writer, @seo, @perf, @ux,"
+    echo "   @performance, @frontend-perf, @video-ai, @video, @writer, @seo, @perf, @ux,"
     echo "   @confidence-scoring, @context-strategy, @error-recovery"
 }
 

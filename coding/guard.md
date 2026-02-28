@@ -110,7 +110,7 @@
 - [ ] API documentation updated
 - [ ] Complex logic explained in comments
 - [ ] Migration notes if schema changed
-- [ ] RELEASE_NOTES.md updated
+- [ ] CHANGELOG.md updated
 
 ---
 
@@ -213,13 +213,13 @@ Invoke alongside @guard when reviewing specific concerns:
 ## Common Security Issues
 
 ### SQL Injection
-```python
-# ❌ Vulnerable
-query = f"SELECT * FROM users WHERE username = '{username}'"
-cursor.execute(query)
+```javascript
+// ❌ Vulnerable
+const query = `SELECT * FROM users WHERE username = '${username}'`;
+db.query(query);
 
-# ✅ Safe (parameterized)
-cursor.execute("SELECT * FROM users WHERE username = %s", [username])
+// ✅ Safe (parameterized)
+db.query("SELECT * FROM users WHERE username = ?", [username]);
 ```
 
 ### XSS (Cross-Site Scripting)
@@ -229,44 +229,39 @@ element.innerHTML = userInput;
 
 // ✅ Safe (escaped)
 element.textContent = userInput;
-// Or use framework escaping (React, Django templates)
+// Or use framework escaping (React, Vue, HTML templates)
 ```
 
 ### CSRF (Cross-Site Request Forgery)
-```python
-# ❌ Missing CSRF protection
-@api_view(['POST'])
-def delete_account(request):
-    request.user.delete()
+```javascript
+// ❌ Missing CSRF protection
+app.post('/api/account', (req, res) => {
+    deleteUserAccount(req.user.id);
+});
 
-# ✅ CSRF protected
-from django.views.decorators.csrf import csrf_protect
-
-@csrf_protect
-@api_view(['POST'])
-def delete_account(request):
-    request.user.delete()
+// ✅ CSRF protected (checking CSRF token middleware)
+app.post('/api/account', csrfProtection, (req, res) => {
+    deleteUserAccount(req.user.id);
+});
 ```
 
 ### Authentication Bypass
-```python
-# ❌ No authentication check
-@api_view(['GET'])
-def user_profile(request, user_id):
-    user = User.objects.get(id=user_id)
-    return Response(user.data)
+```javascript
+// ❌ No authentication check
+app.get('/api/users/:id/profile', async (req, res) => {
+    const user = await db.users.findById(req.params.id);
+    return res.json(user);
+});
 
-# ✅ Authentication required
-from rest_framework.permissions import IsAuthenticated
-
-@api_view(['GET'])
-@permission_classes([IsAuthenticated])
-def user_profile(request, user_id):
-    # Also check authorization!
-    if request.user.id != user_id and not request.user.is_admin:
-        return Response({'error': 'Forbidden'}, status=403)
-    user = User.objects.get(id=user_id)
-    return Response(user.data)
+// ✅ Authentication & Authorization required
+app.get('/api/users/:id/profile', requireAuth, async (req, res) => {
+    // Check authorization: Is the current user retrieving their own profile or an admin?
+    if (req.user.id !== req.params.id && !req.user.isAdmin) {
+        return res.status(403).json({ error: 'Forbidden' });
+    }
+    const user = await db.users.findById(req.params.id);
+    return res.json(user);
+});
 ```
 
 ---
@@ -300,4 +295,3 @@ def user_profile(request, user_id):
 - [OWASP Top 10](https://owasp.org/www-project-top-ten/)
 - [Secure Coding Practices](https://owasp.org/www-project-secure-coding-practices-quick-reference-guide/)
 - [Code Review Best Practices](https://google.github.io/eng-practices/review/)
-- [Django Security](https://docs.djangoproject.com/en/stable/topics/security/)

@@ -61,6 +61,10 @@ Before suggesting a new dependency:
 2. Check if an existing dependency already provides it
 3. Only then suggest something new, with justification
 
+Before using a third-party library's API:
+1. Verify the method/function exists in the installed version — don't assume from memory
+2. Check local typings, README, or docs — AI agents routinely hallucinate library APIs across versions
+
 ---
 
 ## RULE 4: ONE THING AT A TIME
@@ -294,7 +298,8 @@ This project uses role-based skills for AI-assisted development. Load only the s
 - `@api-design` — Designing or reviewing API endpoints and contracts
 - `@data-modeling` — Schema design, model relationships, migrations
 - `@performance` — Backend performance: slow queries, caching, API optimization
-- `@frontend-performance` — Frontend performance: Core Web Vitals, bundle size, image optimization
+- `@frontend-perf` — Frontend performance: Core Web Vitals, bundle size, image optimization
+- `@testing` — Testing strategy, TDD, mocking, test types
 
 **Marketing** — `skills/marketing/`:
 - `@video-ai` — AI video generation with cinematography knowledge
@@ -305,10 +310,12 @@ This project uses role-based skills for AI-assisted development. Load only the s
 
 **Design** — `skills/design/`:
 - `@ux` — User flows, component states, accessibility, form design
+- `@accessibility` — Semantic HTML, ARIA, keyboard navigation, WCAG compliance
 
 **Operations** — `skills/ops/`:
 - `deployment-practices` — Universal deployment principles
 - `cicd-pipelines` — GitHub Actions CI/CD setup
+- `@cloud` — Infrastructure architecture, IaC, cloud security
 
 **Meta (Autonomous Operation)** — `skills/meta/`:
 - `@confidence-scoring` — Assessing confidence level, determining when to ask for help
@@ -340,6 +347,16 @@ This project uses role-based skills for AI-assisted development. Load only the s
 **Skip any step that doesn't apply. Load only the skills you'll actually use.**
 
 ### Handoff Triggers
+
+Every handoff must include a brief state summary so the receiving skill has context without re-reading everything:
+
+```
+Handoff: @arch → @dev
+Decision: Monolith with modular boundaries. Search via PostgreSQL full-text, not Elasticsearch.
+Key files: models.py (Article model), api/search.py (new endpoint)
+Constraints: No new dependencies. Must work with existing DB.
+Open questions: None — ready to implement.
+```
 
 | From | To | When |
 |------|----|------|

@@ -30,7 +30,8 @@ This is a curated collection of **highly transferable** AI agent skills (85%+ po
 - `@api-design` - REST API design principles
 - `@data-modeling` - Database schema design and migrations
 - `@performance` - Backend performance optimization
-- `@frontend-performance` - Frontend performance (Core Web Vitals)
+- `@frontend-perf` - Frontend performance (Core Web Vitals)
+- `@testing` - Testing strategy, TDD, mocking
 
 ### Marketing (90%+ Transferable)
 - `@video-ai` - AI video generation with cinematography knowledge
@@ -41,10 +42,12 @@ This is a curated collection of **highly transferable** AI agent skills (85%+ po
 
 ### Design (90% Transferable)
 - `@ux` - UX/UI design, user flows, accessibility
+- `@accessibility` - Semantic HTML, ARIA, keyboard navigation, WCAG
 
 ### Operations (85%+ Transferable)
 - `deployment-practices` - Universal deployment principles
 - `cicd-pipelines` - GitHub Actions CI/CD patterns
+- `@cloud` - Infrastructure architecture, IaC, cloud security
 
 ## How to Use
 
@@ -92,7 +95,7 @@ git clone https://github.com/vshrinath/ai-core-skills.git
 cp -r ai-core-skills/ your-project/skills/
 rm -rf your-project/skills/.git
 
-# Copy configuration files
+# Copy configuration files (from inside your-project/)
 cp skills/AGENTS.md .
 cp skills/CONVENTIONS.md .
 ```
@@ -257,6 +260,23 @@ your-project/
 2. Load project-specific overrides (framework/stack specifics)
 3. Project overrides take precedence
 
+### Monorepo Setup
+
+If you are using a monorepo (e.g., Turborepo, Nx, Lerna), keep the golden skills at the repository root and use project-specific overrides in each package.
+
+```
+my-monorepo/
+├── skills/                  # ← Golden skills at the root (submodule)
+├── packages/
+│   ├── ui/
+│   │   └── .kiro/skills/    # ← UI library specific overrides
+│   └── backend/
+│       └── .kiro/skills/    # ← Backend specific overrides
+└── apps/
+    └── web/
+        └── .kiro/skills/    # ← Frontend specific overrides
+```
+
 ## Contributing
 
 ### Adding New Skills
@@ -299,7 +319,7 @@ Skills must meet these criteria:
 
 When including framework examples, use this pattern:
 
-```markdown
+````markdown
 ## Universal Principles
 
 [Framework-agnostic content]
@@ -315,7 +335,7 @@ When including framework examples, use this pattern:
 ```typescript
 // Next.js-specific code
 ```
-```
+````
 
 ## Compatibility
 
@@ -354,7 +374,7 @@ This library is actively maintained. Skills are updated based on:
 
 ---
 
-**Version:** 2.0.0  
+**Version:** 3.1.0  
 **Last Updated:** 2026-02-28  
-**Skills:** 25 total (24 transferable + 1 Remotion-specific)  
+**Skills:** 28 total (27 transferable + 1 Remotion-specific)  
 **Compatibility:** Universal AI assistants

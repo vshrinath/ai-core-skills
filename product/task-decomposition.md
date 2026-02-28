@@ -381,7 +381,7 @@ Low confidence (< 70%):
 - Description > 3 sentences
 - Multiple "and" in task title
 - Touches > 5 files
-- Requires > 2 different skills (@dev + @ops)
+- Requires > 2 different skills (@dev + @cloud)
 
 ```
 ❌ Too large:

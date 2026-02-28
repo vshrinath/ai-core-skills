@@ -54,11 +54,16 @@ def test_calculate_total():
 # Rewrite entire module in one go
 # 500 lines changed, tests might pass by accident
 
+# ❌ Full file rewrite (introduces regressions)
+# Output the entire file with changes mixed in
+# Untouched functions subtly altered by accident
+
 # ✅ Incremental refactor (safe)
 # Step 1: Extract one function, test
 # Step 2: Rename variables, test
 # Step 3: Simplify logic, test
 # Each step is independently verifiable
+# Each step touches only the code being changed
 ```
 
 ### 3. Behavior Preservation

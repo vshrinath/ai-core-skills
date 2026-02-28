@@ -66,7 +66,8 @@
 | `@api-design` | `coding/api-design.md` | Designing or reviewing API endpoints and contracts | 90% |
 | `@data-modeling` | `coding/data-modeling.md` | Schema design, model relationships, migrations | 90% |
 | `@performance` | `coding/performance.md` | Backend performance: slow queries, caching, API optimization | 90% |
-| `@frontend-performance` | `coding/frontend-performance.md` | Frontend performance: Core Web Vitals, bundle size, image optimization | 95% |
+| `@frontend-perf` | `coding/frontend-performance.md` | Frontend performance: Core Web Vitals, bundle size, image optimization | 95% |
+| `@testing` | `coding/testing.md` | Testing strategy, TDD, mocking, unit/integration/E2E tests | 95% |
 
 ### Marketing
 
@@ -83,6 +84,7 @@
 | Skill | File | Use when | Transferability |
 |-------|------|----------|----------------|
 | `@ux` | `design/ux.md` | User flows, component states, accessibility, form design | 90% |
+| `@accessibility` | `design/accessibility.md` | Semantic HTML, ARIA, keyboard navigation, WCAG compliance | 95% |
 
 ### Operations
 
@@ -90,6 +92,7 @@
 |-------|------|----------|----------------|
 | — | `ops/deployment-practices.md` | Universal deployment principles (any stack) | 100% |
 | — | `ops/cicd-pipelines.md` | GitHub Actions CI/CD setup and configuration | 95% |
+| `@cloud` | `ops/cloud.md` | Infrastructure architecture, IaC, cloud security | 90% |
 
 ---
 
@@ -102,12 +105,12 @@ Secondary skills are invoked *alongside* a primary skill, not instead of one.
 | Implementing features that touch the API | `@api-design` |
 | Implementing features that change models/schema | `@data-modeling` |
 | Implementing backend features on hot paths or with caching | `@performance` |
-| Implementing frontend features with performance concerns | `@frontend-performance` |
+| Implementing frontend features with performance concerns | `@frontend-perf` |
 | Completing implementation before handoff | `@self-review` |
 | Reviewing API surface changes | `@api-design` |
 | Reviewing schema changes or migrations | `@data-modeling` |
 | Reviewing backend performance-critical code | `@performance` |
-| Reviewing frontend performance-critical code | `@frontend-performance` |
+| Reviewing frontend performance-critical code | `@frontend-perf` |
 | Investigating a bug | `@debugging` |
 | Cleaning up code as part of a task | `@refactoring` |
 | Planning work breakdown | `@task-decomposition` |
@@ -159,7 +162,7 @@ For fully autonomous AI development:
 
 ## Version History
 
-- **v2.0.0** (2026-02-28) - Added 5 more skills: @arch, @dev, @data-modeling, @performance, @frontend-performance (23 total)
+- **v2.0.0** (2026-02-28) - Added 5 more skills: @arch, @dev, @data-modeling, @performance, @frontend-perf (23 total)
 - **v1.0.0** (2026-02-27) - Initial golden set with 18 skills
 - Extracted from production FoundingFuel project
 - Tested across Django/Wagtail + Next.js stack
@@ -203,5 +206,5 @@ git submodule add https://github.com/vshrinath/ai-core-skills.git skills
 git submodule update --init
 
 # Load core skills for any project
-echo "Skills available: @pm @task-decomposition @decision-framework @arch @dev @guard @qa @self-review @debugging @refactoring @api-design @data-modeling @performance @frontend-performance @video-ai @writer @seo @ux"
+echo "Skills available: @pm @task-decomposition @decision-framework @arch @dev @guard @qa @self-review @debugging @refactoring @api-design @data-modeling @performance @frontend-perf @video-ai @writer @seo @ux"
 ```

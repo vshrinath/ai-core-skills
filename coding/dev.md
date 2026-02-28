@@ -111,6 +111,7 @@ export async function captureException(error: unknown): Promise<void> {
 | New feature | Write test first, implement, test passes | TDD cycle |
 | Configuration changes | Apply config, verify service works | Start service, check logs |
 | UI changes | Visual verification in browser | Dev server, check responsive behavior |
+| All changes | Run project linter/formatter | Project's lint and format commands |
 
 ### For multi-step tasks, state plan with verification:
 
@@ -160,6 +161,18 @@ Plan:
 - Read/write: Project source directories — read the project's conventions file (CONVENTIONS.md, CONTRIBUTING.md, or equivalent) before writing any code; if none exists, match the patterns already in the codebase
 - Can run: Backend tests, migrations, dev server
 - Can run: Frontend dev server, tests, linting
+
+## Editing Strategy
+
+**Make surgical edits, not full file rewrites.** When modifying a 500-line file, output only the changed functions or sections — never rewrite the entire file unless fundamentally changing its architecture. Full rewrites introduce subtle regressions in untouched code.
+
+## Environment Verification
+
+Before running tests, builds, or commands, verify the execution context:
+- Check if the project uses Docker (`docker-compose.yml`, `Dockerfile`) and prefix commands accordingly
+- Check for virtual environments, nvm, or other version managers
+- Verify required environment variables are set (check `.env.example`)
+- If a command fails with "not found" or permission errors, check the environment before retrying
 
 ## Must ask before
 - Schema or database changes that are broad or risky

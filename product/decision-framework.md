@@ -270,7 +270,7 @@ Synthesize everything into a decision brief:
 ## Handoffs
 - **To `@arch`** → When the decision is architectural (system design, service boundaries, data models)
 - **To `@pm`** → When the decision is about scope or prioritization
-- **To `@ops`** → When the decision is about deployment, infrastructure, or operational risk
+- **To `@cloud`** → When the decision is about deployment, infrastructure, or operational risk
 - **Back to stakeholders** → When assumptions can't be verified without their input
 
 ---

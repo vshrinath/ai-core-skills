@@ -2,6 +2,8 @@
 
 **Purpose**: This file defines project-specific conventions that AI assistants should follow. Copy this template to your project root and customize for your stack.
 
+> **Note:** The code snippets below use Python/Django, TypeScript, and React as illustrative examples. You must replace these with examples that match your project's actual tech stack and patterns.
+
 ---
 
 ## Tech Stack
@@ -432,11 +434,11 @@ if settings.DEBUG:
 ### Load These Skills for This Project
 ```
 # Core workflow
-@pm → @ux → @arch → @dev → @guard → @qa → @ops
+@pm → @ux → @arch → @dev → @guard → @qa
 
 # Framework-specific skills (customize path)
 @dev-django        # .kiro/skills/coding/dev-django.md
-@ops-aws          # .kiro/skills/ops/ops-aws.md
+@cloud-aws         # .kiro/skills/ops/cloud-aws.md
 ```
 
 ### Custom Skills Location
