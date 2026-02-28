@@ -166,9 +166,6 @@ For fully autonomous AI development:
 - **v3.1.0** (2026-02-28) - Added @testing, @accessibility, and @cloud (28 total)
 - **v2.0.0** (2026-02-28) - Added 5 more skills: @arch, @dev, @data-modeling, @performance, @frontend-perf (23 total)
 - **v1.0.0** (2026-02-27) - Initial golden set with 18 skills
-- Extracted from production FoundingFuel project
-- Tested across Django/Wagtail + Next.js stack
-- 85%+ transferability threshold
 
 ---
 
