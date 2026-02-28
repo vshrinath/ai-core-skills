@@ -4,6 +4,52 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [2026-02-28] — Simplify AGENTS.md to 13 universal principles, move practices to skills
+
+**Commit**: `pending` on branch `master`
+
+### What changed
+- Reduced AGENTS.md from 18 rules to 13 universal principles
+- Created new `@git-workflow` skill covering commit messages, changelog maintenance, and file organization
+- Merged old Rule 8 (Don't Guess) and Rule 9 (Autonomous Work) into unified Rule 8
+- Removed Rules 14-18 (moved to skills or redundant):
+  - Rule 14 (Commit Messages) → moved to @git-workflow skill
+  - Rule 15 (Changelog) → moved to @git-workflow skill
+  - Rule 16 (File Organization) → moved to @git-workflow skill
+  - Rule 17 (Context Discipline) → redundant with @context-strategy skill
+  - Rule 18 (Goal-Driven) → covered by @pm and @task-decomposition skills
+- Updated INDEX.md and README.md to include @git-workflow
+- Total skills now: 25 (24 transferable + 1 Remotion-specific)
+
+### Why
+AGENTS.md had overlapping rules and mixed universal principles with specific practices. Separated concerns: AGENTS.md now contains only universal principles that apply to ALL work, while specific practices (git workflow, context management, goal setting) live in skills where they can be detailed and context-aware. This makes the rules clearer, less redundant, and easier to follow.
+
+### Files touched
+- `AGENTS.md` — Reduced from 18 to 13 rules, merged Rule 8+9, removed Rules 14-18
+- `coding/git-workflow.md` — Created new skill for git workflow practices
+- `.kiro/skills/coding/git-workflow.md` — Copied for Kiro integration
+- `INDEX.md` — Added @git-workflow skill, updated count to 25 skills
+- `README.md` — Added @git-workflow to coding skills list
+
+---
+
+## [2026-02-28] — Move Rule 19 to Rule 9 (reordering)
+
+**Commit**: `pending` on branch `master`
+
+### What changed
+- Moved "Autonomous Work Requires Complete Specifications" from Rule 19 to Rule 9
+- Renumbered all subsequent rules (old 9-18 became 10-19)
+- Positioned immediately after Rule 8 (Don't Guess at Requirements) since they're closely related
+
+### Why
+Rule 9 (Autonomous Work) is a foundational principle for AI agents working independently, not a late-stage consideration. It belongs early in the rules, right after "Don't Guess at Requirements" which it extends and elaborates on. This makes the rule order more logical: basic principles first, then specific practices.
+
+### Files touched
+- `AGENTS.md` — Moved Rule 19 to Rule 9, renumbered Rules 9-18 to 10-19
+
+---
+
 ## [2026-02-28] — Add Rule 19: Autonomous Work Requires Complete Specifications
 
 **Commit**: `pending` on branch `master`

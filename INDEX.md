@@ -1,6 +1,6 @@
 # AI Core Skills - Index
 
-**23 highly transferable skills (85%+ portability) + 1 framework-specific skill (Remotion)**
+**24 highly transferable skills (85%+ portability) + 1 framework-specific skill (Remotion)**
 
 ---
 
@@ -57,6 +57,7 @@
 |-------|------|----------|----------------|
 | `@arch` | `coding/arch.md` | Architectural decisions, system design, service boundaries | 90% |
 | `@dev` | `coding/dev.md` | Any implementation task — backend, frontend, or both | 90% |
+| `@git-workflow` | `coding/git-workflow.md` | Commit messages, changelog maintenance, file organization | 100% |
 | `@guard` | `coding/guard.md` | Code review, security audit, convention drift check | 95% |
 | `@qa` | `coding/qa.md` | Testing, edge cases, regression verification | 95% |
 | `@self-review` | `coding/self-review.md` | Pre-handoff quality check before requesting code review | 95% |

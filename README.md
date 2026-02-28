@@ -19,12 +19,18 @@ This is a curated collection of **highly transferable** AI agent skills (85%+ po
 - `@error-recovery` - Handling failures autonomously
 
 ### Coding (95% Transferable)
+- `@arch` - Architecture and design decisions
+- `@dev` - Implementation (backend + frontend)
+- `@git-workflow` - Commit messages, changelog, file organization
 - `@guard` - Security review, code review, convention checking
 - `@qa` - Testing methodology, edge cases, regression verification
 - `@self-review` - Pre-handoff quality checks
 - `@debugging` - Systematic debugging methodology
 - `@refactoring` - Code smells, safe structural cleanup
 - `@api-design` - REST API design principles
+- `@data-modeling` - Database schema design and migrations
+- `@performance` - Backend performance optimization
+- `@frontend-performance` - Frontend performance (Core Web Vitals)
 
 ### Marketing (90%+ Transferable)
 - `@video-ai` - AI video generation with cinematography knowledge
@@ -350,5 +356,5 @@ This library is actively maintained. Skills are updated based on:
 
 **Version:** 2.0.0  
 **Last Updated:** 2026-02-28  
-**Skills:** 24 total (23 transferable + 1 Remotion-specific)  
+**Skills:** 25 total (24 transferable + 1 Remotion-specific)  
 **Compatibility:** Universal AI assistants

@@ -121,9 +121,13 @@ Don't document:
 
 ---
 
-## RULE 8: DON'T GUESS AT REQUIREMENTS
+## RULE 8: ASK CLARIFYING QUESTIONS BEFORE STARTING
 
-**If a request is ambiguous, ask one clarifying question rather than assuming the most complex interpretation.**
+**For simple tasks, ask one question if ambiguous. For complex tasks, ensure you have complete specifications before starting.**
+
+### Simple Tasks (Single-step, <30 minutes)
+
+If a request is ambiguous, ask one clarifying question rather than assuming the most complex interpretation.
 
 AI tends to interpret ambiguous requests expansively:
 - "Add search" becomes a full-text search engine with facets, filters, autocomplete, and analytics
@@ -134,6 +138,60 @@ Instead, ask:
 - "Do you need full-text search or is filtering the existing list sufficient?"
 - "Are we protecting the whole app or specific routes?"
 - "Which page or operation is slow? Let me profile it first."
+
+### Complex Tasks (Multi-step, >30 minutes, autonomous work)
+
+Before starting any complex or long-running task, verify you have complete information across these 5 areas:
+
+#### 1. Self-Contained Problem Statement
+Do you understand the problem with enough context to solve it without asking more questions mid-work?
+
+**If unclear, ask**:
+- "What exactly happens when [X] fails? What error appears?"
+- "Which files or components are involved?"
+- "Can you show me the error message or logs?"
+
+#### 2. Clear Acceptance Criteria
+Do you know exactly what "done" looks like?
+
+**If unclear, ask**:
+- "What should happen in the success case? What about edge cases?"
+- "How will we know this is working correctly?"
+- "Are there performance requirements or constraints?"
+
+#### 3. Constraint Boundaries
+Do you know what you must do, cannot do, should prefer, and should escalate?
+
+**If unclear, ask**:
+- "Should I follow the existing pattern in [file] or is a new approach acceptable?"
+- "Can I add a new dependency or should I use what's already here?"
+- "What tradeoffs are acceptable vs. need discussion?"
+
+#### 4. Decomposition Clarity
+For complex tasks, do you know how to break this into independently verifiable steps?
+
+**If unclear, propose**:
+- "I'll break this into: (1) [step], (2) [step], (3) [step]. Does this sequence make sense?"
+- "Should I tackle [component A] before [component B], or can they be done independently?"
+
+Use `@task-decomposition` skill for help breaking down complex work.
+
+#### 5. Evaluation Criteria
+Do you know how to verify your work is correct?
+
+**If unclear, ask**:
+- "What test cases should I write to verify this works?"
+- "Are there specific edge cases or error conditions I should test?"
+- "How should I verify this doesn't break existing functionality?"
+
+### When to Apply
+- ✅ Always ask at least one question if the request is vague
+- ✅ Verify all 5 areas before starting multi-step tasks
+- ✅ When you'll work autonomously without immediate feedback
+- ✅ When multiple approaches are possible and tradeoffs aren't clear
+- ❌ Skip verification for obvious, single-step tasks with clear requirements
+
+**Remember**: It's better to ask 3 clarifying questions upfront than to build the wrong thing or get stuck mid-work.
 
 ---
 
@@ -211,202 +269,23 @@ If the project is inconsistent, match the pattern in the file you're editing, no
 
 ---
 
-## RULE 14: COMMIT MESSAGES ARE FOR HUMANS SIX MONTHS FROM NOW
-
-**Every commit message should explain what changed and why, in a format that's useful when scanning `git log` months later.**
-
-Format:
-```
-<type>: <what changed — plain English, specific>
-
-<Why this change was needed. 1-2 sentences.>
-```
-
-Types: `fix`, `feat`, `refactor`, `docs`, `chore`, `test`
-
-Good:
-- `fix: search returns 500 when index is empty, now falls back to DB query`
-- `feat: add bookmark toggle to article header, syncs with auth provider`
-- `refactor: split 82KB API file into per-content-type modules`
-
-Bad:
-- `update files`
-- `fix bug`
-- `WIP`
-- `address review comments`
-
----
-
-## RULE 15: MAINTAIN CHANGELOG ON EVERY COMMIT
-
-**Every commit must append to `CHANGELOG.md`. This is non-negotiable.**
-
-Format:
-
-```markdown
-## [YYYY-MM-DD] — <short description>
-
-**Commit**: `<short hash>` on branch `<branch>`
-
-### What changed
-- <bullet 1: what was added, fixed, or changed>
-- <bullet 2>
-
-### Why
-<1-2 sentences on the motivation>
-
-### Files touched
-- `path/to/file1` — <what changed in this file>
-- `path/to/file2` — <what changed in this file>
-```
-
-Rules:
-- **Append, never overwrite.** New entries go at the top of the file, below the header.
-- **One entry per commit.** If a commit touches multiple features, list them all in one entry.
-- **Be specific, not vague.** "Fixed search" is useless. "Fixed search returning empty results when index is empty instead of falling back to database query" is useful.
-- **Include file paths.** This makes it possible to trace back from changelog to code.
-
-If `CHANGELOG.md` doesn't exist, create it.
-
----
-
-## RULE 16: NO FILE SPRAWL — DOCS GO IN /docs, NOWHERE ELSE
-
-**AI tools must not create files outside the project's established structure. Documentation goes in `/docs/`. Period.**
-
-Specifically:
-- **Do not create** markdown files in the project root (except `README.md`, `AGENTS.md`, `CHANGELOG.md`)
-- **Do not create** random `.md` files alongside source code
-- **Do not create** documentation files unless explicitly asked to
-- **If you need to document something**, append to an existing doc in `/docs/` or ask where it should go
-
-File creation rules:
-1. **Source code files**: Only create if the feature requires it. Prefer editing existing files.
-2. **Documentation files**: Only in `/docs/`. Only when explicitly requested.
-3. **Configuration files**: Only at project root or in established config directories.
-4. **Test files**: Only in established test directories, matching existing naming patterns.
-5. **Temporary/scratch files**: Never.
-
----
-
-## RULE 17: CONTEXT WINDOW DISCIPLINE
-
-**Be surgical with what you load into context. Don't read 15 files "for background" when the task touches 2.**
-
-- Read only the files relevant to the current task
-- Read specific functions or sections, not entire large files unless necessary
-- Don't preemptively load "related" files that might be useful — load them when you actually need them
-- If you need to understand a pattern, read one example file, not all of them
-- When context is getting long, summarize what you've learned and release the raw content
-
----
-
-## RULE 18: GOAL-DRIVEN EXECUTION
-
-**Define verifiable success criteria before starting. Loop until verified.**
-
-Transform vague tasks into testable goals:
-- "Add validation" → "Write tests for invalid inputs, then make them pass"
-- "Fix the bug" → "Write a test that reproduces it, then make it pass"
-- "Refactor X" → "Ensure tests pass before and after"
-
-For multi-step tasks, state a brief plan with verification:
-1. [Step] → verify: [check]
-2. [Step] → verify: [check]
-3. [Step] → verify: [check]
-
-Strong success criteria enable independent iteration. Weak criteria ("make it work") require constant clarification.
-
----
-
-## RULE 19: AUTONOMOUS WORK REQUIRES COMPLETE SPECIFICATIONS
-
-**When working autonomously, ensure you have complete specifications before starting. Ask clarifying questions until you do.**
-
-As you work more autonomously for extended periods, you need complete information upfront. Before starting any multi-step or long-running task, verify you have:
-
-### 1. Self-Contained Problem Statement
-Do you understand the problem with enough context to solve it without asking more questions mid-work?
-
-**If unclear**: Ask for specifics about current behavior, expected behavior, error messages, affected files, or reproduction steps.
-
-**Example questions**:
-- "What exactly happens when the search fails? What error appears?"
-- "Which files or components are involved?"
-- "Can you show me the error message or logs?"
-
-### 2. Clear Acceptance Criteria
-Do you know exactly what "done" looks like?
-
-**If unclear**: Ask what success looks like, what tests should pass, what performance is acceptable, or what edge cases matter.
-
-**Example questions**:
-- "What should happen in the success case? What about edge cases?"
-- "How will we know this is working correctly?"
-- "Are there performance requirements or constraints?"
-
-### 3. Constraint Boundaries
-Do you know what you must do, cannot do, should prefer, and should escalate?
-
-**If unclear**: Ask about existing patterns to follow, dependencies you can/cannot add, architectural constraints, or when to ask for help.
-
-**Example questions**:
-- "Should I follow the existing pattern in [file] or is a new approach acceptable?"
-- "Can I add a new dependency or should I use what's already here?"
-- "What tradeoffs are acceptable vs. need discussion?"
-
-### 4. Decomposition Clarity
-For complex tasks, do you know how to break this into independently verifiable steps?
-
-**If unclear**: Propose a decomposition and ask for confirmation before starting.
-
-**Example approach**:
-- "I'll break this into: (1) [step], (2) [step], (3) [step]. Does this sequence make sense?"
-- "Should I tackle [component A] before [component B], or can they be done independently?"
-
-### 5. Evaluation Criteria
-Do you know how to verify your work is correct?
-
-**If unclear**: Ask what tests to write, what scenarios to cover, or how quality will be measured.
-
-**Example questions**:
-- "What test cases should I write to verify this works?"
-- "Are there specific edge cases or error conditions I should test?"
-- "How should I verify this doesn't break existing functionality?"
-
-### When to Apply This Rule
-- ✅ Before starting any multi-step task (>30 minutes of work)
-- ✅ When the request is vague ("fix the search", "make it faster")
-- ✅ When you'll work autonomously without immediate feedback
-- ✅ When multiple approaches are possible and tradeoffs aren't clear
-- ❌ For simple, single-step tasks with obvious solutions
-- ❌ When the user has already provided complete specifications
-
-### Integration with Other Rules
-- **Rule 8** (Don't Guess at Requirements) - Ask one clarifying question rather than assuming
-- **Rule 18** (Goal-Driven Execution) - Define verifiable success criteria before starting
-- Use `@pm` skill for help structuring requirements
-- Use `@task-decomposition` skill for breaking down complex work
-- Use `@confidence-scoring` skill to assess if you have enough information
-
-**Remember**: It's better to ask 3 clarifying questions upfront than to build the wrong thing or get stuck mid-work.
-
----
-
 ## SKILLS SYSTEM
 
 This project uses role-based skills for AI-assisted development. Load only the skills you need for the current task.
 
+**For specific practices** (git workflow, testing, deployment), use the relevant skill rather than following rigid rules. Skills provide detailed, context-aware guidance.
+
 ### Available Skills by Domain
 
 **Product & Planning** — `skills/product/`:
-- `@pm` — Feature scoping, requirements, acceptance criteria
-- `@task-decomposition` — Breaking features into small, testable tasks
+- `@pm` — Feature scoping, requirements, acceptance criteria (includes defining "done")
+- `@task-decomposition` — Breaking features into small, testable tasks (includes decomposition and verification)
 - `@decision-framework` — Architecture decisions, build vs. buy, technical debt
 
 **Coding** — `skills/coding/`:
 - `@arch` — Architectural decisions, system design, service boundaries
 - `@dev` — Any implementation task — backend, frontend, or both
+- `@git-workflow` — Commit messages, changelog maintenance, file organization
 - `@guard` — Code review, security audit, convention drift check
 - `@qa` — Testing, edge cases, regression verification
 - `@self-review` — Pre-handoff quality check before requesting code review
@@ -433,7 +312,7 @@ This project uses role-based skills for AI-assisted development. Load only the s
 
 **Meta (Autonomous Operation)** — `skills/meta/`:
 - `@confidence-scoring` — Assessing confidence level, determining when to ask for help
-- `@context-strategy` — Managing limited context window, efficient file navigation
+- `@context-strategy` — Managing limited context window, efficient file navigation (see this for context discipline)
 - `@error-recovery` — Handling test/build/deployment failures autonomously
 
 ### Workflow Examples
