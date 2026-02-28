@@ -4,6 +4,24 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [2026-02-28] — Add Rule 19: Specification Engineering for Autonomous Work
+
+**Commit**: `pending` on branch `master`
+
+### What changed
+- Added Rule 19 to AGENTS.md covering the five primitives of specification engineering
+- Integrated framework for autonomous AI agent work: self-contained problem statements, acceptance criteria, constraint architecture, decomposition, and evaluation design
+- Added guidance on when to apply specification engineering vs. simple execution
+- Linked Rule 19 to existing skills (@pm, @task-decomposition, @qa, @decision-framework)
+
+### Why
+As AI agents become more autonomous and work for extended periods, they need structured specifications to operate effectively. This rule codifies best practices for writing specifications that agents can execute against, based on the four disciplines of AI prompting: prompt craft, context engineering, intent engineering, and specification engineering. Our existing skills already embody these principles, but Rule 19 makes them explicit and provides a framework for autonomous work.
+
+### Files touched
+- `AGENTS.md` — Added Rule 19 with five primitives and integration guidance
+
+---
+
 ## [2026-02-28] — v2.0.0 - Major release with 5 new skills and brand system
 
 **Commit**: `66a41e4` on branch `master`

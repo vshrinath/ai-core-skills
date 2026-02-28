@@ -319,6 +319,63 @@ Strong success criteria enable independent iteration. Weak criteria ("make it wo
 
 ---
 
+## RULE 19: SPECIFICATION ENGINEERING FOR AUTONOMOUS WORK
+
+**When working autonomously for extended periods, structure your work using the five primitives of specification engineering.**
+
+As AI agents work more autonomously, clear specifications become critical. Apply these primitives to any multi-step or long-running task:
+
+### 1. Self-Contained Problem Statements
+State the problem with enough context to solve it without needing more information.
+
+**Bad**: "Fix the search"  
+**Good**: "Search returns 500 when the index is empty. Expected: fall back to database query with LIKE operator on title and content fields. Current behavior: crashes on line 47 of search.py when results array is None."
+
+### 2. Acceptance Criteria
+Clearly describe what "done" looks like so you know when to stop.
+
+**Bad**: "Make it work"  
+**Good**: "Done when: (1) Search returns results from DB when index empty, (2) Response time < 2s, (3) Tests pass for empty index scenario, (4) No 500 errors in logs"
+
+### 3. Constraint Architecture
+Define what you must do, cannot do, should prefer, and should escalate.
+
+**Must do**: Follow existing patterns in the codebase  
+**Cannot do**: Add new dependencies without approval (Rule 9)  
+**Should prefer**: Simplest solution first (Rule 1)  
+**Should escalate**: When tradeoffs are unclear or acceptance criteria conflict
+
+### 4. Decomposition
+Break large tasks into independently executable and verifiable components (see `@task-decomposition` skill).
+
+**Example**: "Add user authentication"  
+→ Task 1: Add User model with password hashing (verify: model tests pass)  
+→ Task 2: Add login endpoint (verify: can authenticate with valid credentials)  
+→ Task 3: Add session management (verify: sessions persist across requests)  
+→ Task 4: Protect existing routes (verify: unauthorized requests return 401)
+
+### 5. Evaluation Design
+Systematically prove quality with measurable, consistent test cases (see `@qa` skill).
+
+**Not just**: "Test it"  
+**But**: "Write tests for: valid login, invalid password, missing email, expired session, concurrent logins, SQL injection attempts"
+
+### When to Apply
+- ✅ Multi-step features requiring >1 hour of work
+- ✅ Tasks where you'll work autonomously without immediate feedback
+- ✅ Complex problems with multiple valid approaches
+- ✅ Work that will be reviewed asynchronously
+- ❌ Simple, single-step tasks with obvious solutions
+- ❌ Exploratory work where the goal is to learn, not deliver
+
+### Integration with Skills
+- Use `@pm` for acceptance criteria and problem statements
+- Use `@task-decomposition` for decomposition
+- Use `@qa` for evaluation design
+- Use `@decision-framework` for constraint architecture when tradeoffs are unclear
+
+---
+
 ## SKILLS SYSTEM
 
 This project uses role-based skills for AI-assisted development. Load only the skills you need for the current task.
