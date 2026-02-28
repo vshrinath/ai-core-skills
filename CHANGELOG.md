@@ -4,21 +4,22 @@ All notable changes to this project will be documented in this file.
 
 ---
 
-## [2026-02-28] — Add Rule 19: Specification Engineering for Autonomous Work
+## [2026-02-28] — Add Rule 19: Autonomous Work Requires Complete Specifications
 
 **Commit**: `pending` on branch `master`
 
 ### What changed
-- Added Rule 19 to AGENTS.md covering the five primitives of specification engineering
-- Integrated framework for autonomous AI agent work: self-contained problem statements, acceptance criteria, constraint architecture, decomposition, and evaluation design
-- Added guidance on when to apply specification engineering vs. simple execution
-- Linked Rule 19 to existing skills (@pm, @task-decomposition, @qa, @decision-framework)
+- Added Rule 19 to AGENTS.md for AI agents working autonomously
+- Reframed specification engineering primitives as questions agents should ask humans
+- Emphasizes asking clarifying questions upfront rather than guessing or getting stuck mid-work
+- Integrated with existing rules (Rule 8: Don't Guess, Rule 18: Goal-Driven Execution)
+- Linked to skills (@pm, @task-decomposition, @confidence-scoring)
 
 ### Why
-As AI agents become more autonomous and work for extended periods, they need structured specifications to operate effectively. This rule codifies best practices for writing specifications that agents can execute against, based on the four disciplines of AI prompting: prompt craft, context engineering, intent engineering, and specification engineering. Our existing skills already embody these principles, but Rule 19 makes them explicit and provides a framework for autonomous work.
+The previous version incorrectly framed the rule as instructions for humans on how to write specifications. This version correctly frames it as guidance for AI agents on what information they need before starting autonomous work, and what questions to ask when that information is missing. The rule now emphasizes "ask clarifying questions until you have complete specifications" rather than "humans should provide complete specifications."
 
 ### Files touched
-- `AGENTS.md` — Added Rule 19 with five primitives and integration guidance
+- `AGENTS.md` — Rewrote Rule 19 from agent perspective (what to ask, not what to expect)
 
 ---
 

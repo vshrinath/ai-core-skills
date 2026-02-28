@@ -319,60 +319,77 @@ Strong success criteria enable independent iteration. Weak criteria ("make it wo
 
 ---
 
-## RULE 19: SPECIFICATION ENGINEERING FOR AUTONOMOUS WORK
+## RULE 19: AUTONOMOUS WORK REQUIRES COMPLETE SPECIFICATIONS
 
-**When working autonomously for extended periods, structure your work using the five primitives of specification engineering.**
+**When working autonomously, ensure you have complete specifications before starting. Ask clarifying questions until you do.**
 
-As AI agents work more autonomously, clear specifications become critical. Apply these primitives to any multi-step or long-running task:
+As you work more autonomously for extended periods, you need complete information upfront. Before starting any multi-step or long-running task, verify you have:
 
-### 1. Self-Contained Problem Statements
-State the problem with enough context to solve it without needing more information.
+### 1. Self-Contained Problem Statement
+Do you understand the problem with enough context to solve it without asking more questions mid-work?
 
-**Bad**: "Fix the search"  
-**Good**: "Search returns 500 when the index is empty. Expected: fall back to database query with LIKE operator on title and content fields. Current behavior: crashes on line 47 of search.py when results array is None."
+**If unclear**: Ask for specifics about current behavior, expected behavior, error messages, affected files, or reproduction steps.
 
-### 2. Acceptance Criteria
-Clearly describe what "done" looks like so you know when to stop.
+**Example questions**:
+- "What exactly happens when the search fails? What error appears?"
+- "Which files or components are involved?"
+- "Can you show me the error message or logs?"
 
-**Bad**: "Make it work"  
-**Good**: "Done when: (1) Search returns results from DB when index empty, (2) Response time < 2s, (3) Tests pass for empty index scenario, (4) No 500 errors in logs"
+### 2. Clear Acceptance Criteria
+Do you know exactly what "done" looks like?
 
-### 3. Constraint Architecture
-Define what you must do, cannot do, should prefer, and should escalate.
+**If unclear**: Ask what success looks like, what tests should pass, what performance is acceptable, or what edge cases matter.
 
-**Must do**: Follow existing patterns in the codebase  
-**Cannot do**: Add new dependencies without approval (Rule 9)  
-**Should prefer**: Simplest solution first (Rule 1)  
-**Should escalate**: When tradeoffs are unclear or acceptance criteria conflict
+**Example questions**:
+- "What should happen in the success case? What about edge cases?"
+- "How will we know this is working correctly?"
+- "Are there performance requirements or constraints?"
 
-### 4. Decomposition
-Break large tasks into independently executable and verifiable components (see `@task-decomposition` skill).
+### 3. Constraint Boundaries
+Do you know what you must do, cannot do, should prefer, and should escalate?
 
-**Example**: "Add user authentication"  
-→ Task 1: Add User model with password hashing (verify: model tests pass)  
-→ Task 2: Add login endpoint (verify: can authenticate with valid credentials)  
-→ Task 3: Add session management (verify: sessions persist across requests)  
-→ Task 4: Protect existing routes (verify: unauthorized requests return 401)
+**If unclear**: Ask about existing patterns to follow, dependencies you can/cannot add, architectural constraints, or when to ask for help.
 
-### 5. Evaluation Design
-Systematically prove quality with measurable, consistent test cases (see `@qa` skill).
+**Example questions**:
+- "Should I follow the existing pattern in [file] or is a new approach acceptable?"
+- "Can I add a new dependency or should I use what's already here?"
+- "What tradeoffs are acceptable vs. need discussion?"
 
-**Not just**: "Test it"  
-**But**: "Write tests for: valid login, invalid password, missing email, expired session, concurrent logins, SQL injection attempts"
+### 4. Decomposition Clarity
+For complex tasks, do you know how to break this into independently verifiable steps?
 
-### When to Apply
-- ✅ Multi-step features requiring >1 hour of work
-- ✅ Tasks where you'll work autonomously without immediate feedback
-- ✅ Complex problems with multiple valid approaches
-- ✅ Work that will be reviewed asynchronously
-- ❌ Simple, single-step tasks with obvious solutions
-- ❌ Exploratory work where the goal is to learn, not deliver
+**If unclear**: Propose a decomposition and ask for confirmation before starting.
 
-### Integration with Skills
-- Use `@pm` for acceptance criteria and problem statements
-- Use `@task-decomposition` for decomposition
-- Use `@qa` for evaluation design
-- Use `@decision-framework` for constraint architecture when tradeoffs are unclear
+**Example approach**:
+- "I'll break this into: (1) [step], (2) [step], (3) [step]. Does this sequence make sense?"
+- "Should I tackle [component A] before [component B], or can they be done independently?"
+
+### 5. Evaluation Criteria
+Do you know how to verify your work is correct?
+
+**If unclear**: Ask what tests to write, what scenarios to cover, or how quality will be measured.
+
+**Example questions**:
+- "What test cases should I write to verify this works?"
+- "Are there specific edge cases or error conditions I should test?"
+- "How should I verify this doesn't break existing functionality?"
+
+### When to Apply This Rule
+- ✅ Before starting any multi-step task (>30 minutes of work)
+- ✅ When the request is vague ("fix the search", "make it faster")
+- ✅ When you'll work autonomously without immediate feedback
+- ✅ When multiple approaches are possible and tradeoffs aren't clear
+- ❌ For simple, single-step tasks with obvious solutions
+- ❌ When the user has already provided complete specifications
+
+### Integration with Other Rules
+- **Rule 8** (Don't Guess at Requirements) - Ask one clarifying question rather than assuming
+- **Rule 18** (Goal-Driven Execution) - Define verifiable success criteria before starting
+- Use `@pm` skill for help structuring requirements
+- Use `@task-decomposition` skill for breaking down complex work
+- Use `@confidence-scoring` skill to assess if you have enough information
+
+**Remember**: It's better to ask 3 clarifying questions upfront than to build the wrong thing or get stuck mid-work.
 
 ---
 
