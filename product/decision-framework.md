@@ -19,6 +19,11 @@
 - Surface cognitive distortions and misaligned incentives
 - Produce a decision brief with explicit tradeoffs
 
+## Boundary with `@arch`
+- `@decision-framework` decides **which option** to choose under uncertainty and tradeoffs.
+- `@arch` defines **how to implement** the chosen architecture (boundaries, interfaces, rollout path).
+- Use `@decision-framework` when choices are contested or high-stakes; use `@arch` when the decision is already made.
+
 ## Decision Analysis Process
 
 ### Step 1: Decision Clarification

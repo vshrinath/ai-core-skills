@@ -16,6 +16,11 @@
 - Determine what can be done in parallel
 - Define verification criteria for each task
 
+## Boundary with `@pm`
+- `@task-decomposition` assumes scope and acceptance criteria already exist (usually from `@pm`).
+- If scope is unclear, hand back to `@pm` instead of inventing requirements.
+- Focus on execution units and validation steps, not product prioritization.
+
 ---
 
 ## Core Principles

@@ -18,6 +18,11 @@
 - Check for convention drift and best practice violations (when invoked)
 - Perform comprehensive code review
 
+## Boundary with `@self-review`
+- `@guard` is the independent review layer after implementation (and ideally after `@self-review`).
+- `@self-review` is preparatory and author-owned; `@guard` is decision-support for merge readiness.
+- On non-trivial changes, keep both stages instead of collapsing to one.
+
 ---
 
 ## Code Review Checklist

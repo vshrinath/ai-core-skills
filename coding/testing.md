@@ -17,6 +17,11 @@
 - Maintain fast, reliable, and deterministic test suites
 - Set up test fixtures and factories
 
+## Boundary with `@qa`
+- `@testing` owns test design and test authoring (what to test and how to structure tests).
+- `@qa` owns release-gate verification, regression evidence, and pass/fail reporting.
+- Use `@testing` before or during implementation; use `@qa` before merge/release decisions.
+
 ---
 
 ## Testing Principles

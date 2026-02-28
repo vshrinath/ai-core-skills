@@ -279,6 +279,30 @@ This project uses role-based skills for AI-assisted development. Load only the s
 
 **For specific practices** (git workflow, testing, deployment), use the relevant skill rather than following rigid rules. Skills provide detailed, context-aware guidance.
 
+### Instruction Precedence
+
+When instructions conflict:
+1. `AGENTS.md` safety and behavior rules are the baseline contract.
+2. `CONVENTIONS.md` may override **project-specific implementation details** (stack, file layout, naming, tooling).
+3. Skills specialize execution and must not violate `AGENTS.md`.
+
+In short: use skills for role behavior, use `CONVENTIONS.md` for project specifics, and keep `AGENTS.md` as the global guardrail.
+
+### Default Routing Policy
+
+Use the lightest viable path first:
+- Routine implementation: `@dev → @guard`
+- Add `@qa` when risk is non-trivial (auth, payments, migrations, concurrency, critical user flows)
+- Use `@pm`, `@task-decomposition`, or `@arch` only when scope/architecture is genuinely unclear
+
+### Skill Lifecycle (Deprecation Policy)
+
+When renaming or retiring a skill:
+- Keep a 1-version compatibility note in `INDEX.md` and `README.md`
+- Update all references in `AGENTS.md`, workflows, and setup scripts in the same change
+- Mark deprecated aliases explicitly with the replacement skill and removal version
+- Remove deprecated aliases only after the announced version window
+
 ### Available Skills by Domain
 
 **Product & Planning** — `skills/product/`:
@@ -331,7 +355,7 @@ This project uses role-based skills for AI-assisted development. Load only the s
 
 **Small coding fix:**
 ```
-@debugging → @guard
+@dev → @guard
 ```
 
 **Content/marketing:**

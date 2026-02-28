@@ -17,6 +17,11 @@
 - Prioritize by impact, not effort — the user decides what to cut
 - Break large features into increments that each deliver user value
 
+## Boundary with `@task-decomposition`
+- `@pm` owns scope definition: problem, target user, in/out of scope, acceptance criteria.
+- `@task-decomposition` owns execution planning: task graph, sequencing, dependencies, parallelization.
+- Do not use `@pm` to produce implementation task DAGs unless explicitly requested.
+
 ## Scoping process
 
 ### Step 1: Clarify intent

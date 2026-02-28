@@ -13,6 +13,11 @@
 - Flag coupling, bloat, or misaligned framework usage
 - Document design decisions with tradeoffs (Rule 7)
 
+## Boundary with `@decision-framework`
+- `@arch` turns approved direction into implementable boundaries and contracts.
+- `@decision-framework` is for selecting between competing high-impact options.
+- If uncertainty is primarily about tradeoff quality (not structure), invoke `@decision-framework` first.
+
 ## Scope
 - Read: Project source directories — check the project's conventions file (CONVENTIONS.md, CONTRIBUTING.md, or equivalent) to understand existing structure before proposing changes
 - Can visualize dependency graphs and edit documentation

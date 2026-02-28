@@ -4,6 +4,35 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [2026-02-28] — Clarify skill precedence, default routing, and overlap boundaries
+
+### What changed
+- Added instruction precedence rules in `AGENTS.md` (`AGENTS.md` baseline, `CONVENTIONS.md` project-specific overrides, skills as specialization)
+- Added a default lightweight routing policy (`@dev → @guard`, add `@qa` for higher-risk changes)
+- Added a skill deprecation policy (compatibility window, alias/removal expectations)
+- Clarified overlap boundaries:
+  - `@pm` vs `@task-decomposition`
+  - `@decision-framework` vs `@arch`
+  - `@testing` vs `@qa`
+  - `@self-review` vs `@guard`
+- Aligned AGENTS small-fix workflow example to `@dev → @guard`
+
+### Why
+These changes reduce invocation ambiguity, prevent process overuse on routine tasks, and make handoffs between overlapping skills deterministic.
+
+### Files touched
+- `AGENTS.md`
+- `product/pm.md`
+- `product/task-decomposition.md`
+- `product/decision-framework.md`
+- `coding/arch.md`
+- `coding/testing.md`
+- `coding/qa.md`
+- `coding/self-review.md`
+- `coding/guard.md`
+
+---
+
 ## [2026-02-28] — v3.1.1: Sync skill index metadata with current catalog
 
 ### What changed

@@ -16,6 +16,11 @@
 - Validate security and performance
 - Ensure documentation is updated
 
+## Boundary with `@guard`
+- `@self-review` is the author's internal pre-check before requesting review.
+- `@guard` is the independent audit pass used for review and merge readiness.
+- Do not replace `@guard` with `@self-review` on non-trivial changes.
+
 ---
 
 ## Self-Review Checklist
