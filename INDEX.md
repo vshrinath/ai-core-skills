@@ -160,15 +160,6 @@ For fully autonomous AI development:
 
 ---
 
-## Version History
-
-- **v3.1.1** (2026-02-28) - Synced index metadata and skill-loading example with current 28-skill catalog
-- **v3.1.0** (2026-02-28) - Added @testing, @accessibility, and @cloud (28 total)
-- **v2.0.0** (2026-02-28) - Added 5 more skills: @arch, @dev, @data-modeling, @performance, @frontend-perf (23 total)
-- **v1.0.0** (2026-02-27) - Initial golden set with 18 skills
-
----
-
 ## Usage Examples
 
 ### Loading Skills in Different AI Assistants
