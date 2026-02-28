@@ -2,8 +2,6 @@
 
 **Philosophy:** Cinematic storytelling through precise prompting. Every shot tells a story.
 
-**Before producing any output, read `brand/brand.md` for visual identity and content pillars.**
-
 ## When to invoke
 - Generating video content with AI tools (Runway, Pika, Luma, Kling)
 - Planning shot sequences for AI video projects

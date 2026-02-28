@@ -28,6 +28,7 @@ This is a curated collection of **highly transferable** AI agent skills (85%+ po
 
 ### Marketing (90%+ Transferable)
 - `@video-ai` - AI video generation with cinematography knowledge
+- `@video` - Remotion video production (requires React/TypeScript)
 - `@writer` - Content writing for articles, newsletters, social posts
 - `@seo` - SEO optimization and technical SEO
 - `@perf` - Performance marketing, ad copy, landing pages
@@ -101,6 +102,7 @@ your-project/
 │   ├── design/
 │   ├── ops/
 │   ├── meta/
+│   ├── brand/          # ← Brand template and assets
 │   ├── AGENTS.md
 │   ├── CONVENTIONS.md
 │   └── INDEX.md
@@ -108,11 +110,14 @@ your-project/
 │   └── skills/
 │       ├── coding/
 │       └── ops/
+├── brand/              # ← Your brand guide (copy from skills/brand/)
+│   ├── brand.md        # ← Customize this
+│   └── assets/         # ← Your brand assets
 ├── AGENTS.md           # ← Universal AI rules (copied from skills/)
 ├── CONVENTIONS.md      # ← Project patterns (customize this)
-├── .cursor/            # ← Cursor configuration
-├── .windsurf/          # ← Windsurf configuration
-├── .github/            # ← GitHub Copilot configuration
+├── .cursor/            # ← Cursor configuration (symlinked)
+├── .windsurf/          # ← Windsurf configuration (symlinked)
+├── .github/            # ← GitHub Copilot configuration (symlinked)
 └── src/
 ```
 
@@ -196,6 +201,35 @@ cp -r /path/to/ai-core-skills/ skills/
 ```
 
 ## Customization
+
+### Brand System
+
+Marketing skills (`@video`, `@video-ai`, `@writer`, `@seo`, `@perf`) reference `brand/brand.md` for voice, tone, and visual identity.
+
+**Setup:**
+```bash
+# Copy brand template
+cp skills/brand/brand-template.md brand/brand.md
+
+# Add your brand assets
+cp your-logo.svg brand/assets/logo.svg
+cp your-favicon.ico brand/assets/favicon.ico
+cp your-og-image.png brand/assets/og-default.png
+
+# Edit brand/brand.md with your brand details
+```
+
+**Brand assets structure:**
+```
+brand/
+├── brand.md            # Your brand guide (customize from template)
+└── assets/
+    ├── logo.svg        # Primary logo
+    ├── logo-dark.svg   # Dark background variant (optional)
+    ├── favicon.ico     # Standard favicon
+    ├── favicon.svg     # Modern SVG favicon
+    └── og-default.png  # Default Open Graph image (1200×630px)
+```
 
 ### Project-Specific Skills
 
@@ -314,6 +348,7 @@ This library is actively maintained. Skills are updated based on:
 
 ---
 
-**Version:** 1.0.0  
-**Last Updated:** 2026-02-27  
+**Version:** 2.0.0  
+**Last Updated:** 2026-02-28  
+**Skills:** 24 total (23 transferable + 1 Remotion-specific)  
 **Compatibility:** Universal AI assistants

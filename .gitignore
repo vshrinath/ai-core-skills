@@ -17,3 +17,18 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+
+# Generated AI tool config files (created by setup.sh)
+.cursor/
+.windsurf/
+.github/copilot-instructions.md
+.kiro/steering/agents.md
+.cursorules
+.windsurfrules
+claude.md
+gemini-rules.md
+gemini-conventions.md
+antigravity-rules.md
+antigravity-conventions.md
+codex-rules.md
+codex-conventions.md

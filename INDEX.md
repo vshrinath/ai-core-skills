@@ -1,6 +1,6 @@
 # AI Core Skills - Index
 
-**18 highly transferable skills (85%+ portability across projects)**
+**23 highly transferable skills (85%+ portability) + 1 framework-specific skill (Remotion)**
 
 ---
 
@@ -8,7 +8,7 @@
 
 ### Standard workflow (full feature)
 ```
-@pm → @ux → @arch → @dev → @guard → @qa → @ops
+@pm → @ux → @arch → @dev → @guard → @qa
 ```
 
 ### Small coding fix
@@ -55,18 +55,24 @@
 
 | Skill | File | Use when | Transferability |
 |-------|------|----------|----------------|
+| `@arch` | `coding/arch.md` | Architectural decisions, system design, service boundaries | 90% |
+| `@dev` | `coding/dev.md` | Any implementation task — backend, frontend, or both | 90% |
 | `@guard` | `coding/guard.md` | Code review, security audit, convention drift check | 95% |
 | `@qa` | `coding/qa.md` | Testing, edge cases, regression verification | 95% |
 | `@self-review` | `coding/self-review.md` | Pre-handoff quality check before requesting code review | 95% |
 | `@debugging` | `coding/debugging.md` | Bug investigation, intermittent failures, root cause analysis | 95% |
 | `@refactoring` | `coding/refactoring.md` | Code smells, safe structural cleanup, tech debt reduction | 95% |
 | `@api-design` | `coding/api-design.md` | Designing or reviewing API endpoints and contracts | 90% |
+| `@data-modeling` | `coding/data-modeling.md` | Schema design, model relationships, migrations | 90% |
+| `@performance` | `coding/performance.md` | Backend performance: slow queries, caching, API optimization | 90% |
+| `@frontend-performance` | `coding/frontend-performance.md` | Frontend performance: Core Web Vitals, bundle size, image optimization | 95% |
 
 ### Marketing
 
 | Skill | File | Use when | Transferability |
 |-------|------|----------|----------------|
 | `@video-ai` | `marketing/video-ai.md` | AI video generation with cinematography knowledge (Runway, Pika, Luma, Kling, fal.ai) | 100% |
+| `@video` | `marketing/video.md` | Remotion video production (requires React/TypeScript) | Remotion-specific |
 | `@writer` | `marketing/writer.md` | Articles, newsletters, social posts, email campaigns | 95% |
 | `@seo` | `marketing/seo.md` | Meta tags, structured data, technical SEO | 90% |
 | `@perf` | `marketing/perf.md` | Ad copy, landing pages, UTM tracking, A/B tests | 85% |
@@ -93,8 +99,14 @@ Secondary skills are invoked *alongside* a primary skill, not instead of one.
 | If you're doing... | Also invoke |
 |--------------------|-------------|
 | Implementing features that touch the API | `@api-design` |
+| Implementing features that change models/schema | `@data-modeling` |
+| Implementing backend features on hot paths or with caching | `@performance` |
+| Implementing frontend features with performance concerns | `@frontend-performance` |
 | Completing implementation before handoff | `@self-review` |
 | Reviewing API surface changes | `@api-design` |
+| Reviewing schema changes or migrations | `@data-modeling` |
+| Reviewing backend performance-critical code | `@performance` |
+| Reviewing frontend performance-critical code | `@frontend-performance` |
 | Investigating a bug | `@debugging` |
 | Cleaning up code as part of a task | `@refactoring` |
 | Planning work breakdown | `@task-decomposition` |
@@ -115,10 +127,9 @@ Secondary skills are invoked *alongside* a primary skill, not instead of one.
         @self-review → Pre-handoff quality check
           @guard →  Code review: security, correctness, conventions
             @qa  →  Testing: edge cases, coverage, regressions
-              @ops →  Deployment: checklist, environment, monitoring
 ```
 
-**Skip any step that doesn't apply.** A bug fix doesn't need `@pm` or `@ux`. A content task doesn't need `@arch` or `@ops`.
+**Skip any step that doesn't apply.** A bug fix doesn't need `@pm` or `@ux`. A content task doesn't need `@arch`.
 
 ---
 
@@ -130,11 +141,11 @@ For fully autonomous AI development:
 1. @task-decomposition  →  Break feature into small, testable tasks
 2. @confidence-scoring  →  Assess confidence for each task; ask before low-confidence ones
 3. @context-strategy    →  Load only what's needed for the current task
-4. @dev                 →  Implement
-5. @self-review         →  Check own work before handoff
-6. @guard               →  Security/convention review
-7. @qa                  →  Test
-8. @ops                 →  Deploy
+4. @arch                →  Design system structure if needed
+5. @dev                 →  Implement
+6. @self-review         →  Check own work before handoff
+7. @guard               →  Security/convention review
+8. @qa                  →  Test
 ```
 
 **`@error-recovery` is not a sequential step** — invoke it at any point when a test, build, or deployment fails.
@@ -143,28 +154,11 @@ For fully autonomous AI development:
 
 ---
 
-## Excluded Skills (Project-Specific)
-
-These skills were **not included** in the golden set due to low transferability:
-
-| Skill | Transferability | Why Excluded |
-|-------|----------------|--------------|
-| `@arch` | 70% | Has Django/Wagtail examples |
-| `@dev` | 60% | Has Django/Wagtail references |
-| `@data-modeling` | 70% | Has Django ORM examples |
-| `@performance` | 70% | Has Django examples |
-| `@frontend-perf` | 80% | Has Next.js examples |
-| `@video` (Remotion) | 0% | Remotion-specific only |
-| `@ops` | 85% | Has some Django references |
-| `deploy-aws` | 50% | AWS-specific |
-| `deploy-python-django` | 0% | Django-only |
-
-**For these skills:** Copy to project and customize examples for your stack.
-
 ---
 
 ## Version History
 
+- **v2.0.0** (2026-02-28) - Added 5 more skills: @arch, @dev, @data-modeling, @performance, @frontend-performance (23 total)
 - **v1.0.0** (2026-02-27) - Initial golden set with 18 skills
 - Extracted from production FoundingFuel project
 - Tested across Django/Wagtail + Next.js stack
@@ -178,7 +172,7 @@ These skills were **not included** in the golden set due to low transferability:
 
 **Claude/Cursor:**
 ```
-Load skills: @pm, @ux, @dev, @guard, @qa
+Load skills: @pm, @ux, @arch, @dev, @guard, @qa
 
 Task: Add user authentication to the dashboard
 ```
@@ -186,6 +180,7 @@ Task: Add user authentication to the dashboard
 **GitHub Copilot Chat:**
 ```
 #file:skills/product/pm.md
+#file:skills/coding/arch.md
 #file:skills/coding/dev.md
 #file:skills/coding/guard.md
 
@@ -194,9 +189,9 @@ Help me scope and implement user authentication
 
 **Windsurf:**
 ```
-@pm @dev @guard
+@pm @arch @dev @guard
 
-I need to add user authentication. Help me scope it first, then implement securely.
+I need to add user authentication. Help me scope it first, then design and implement securely.
 ```
 
 ### Project Setup
@@ -207,5 +202,5 @@ git submodule add https://github.com/vshrinath/ai-core-skills.git skills
 git submodule update --init
 
 # Load core skills for any project
-echo "Skills available: @pm @task-decomposition @decision-framework @guard @qa @debugging @video-ai @writer @seo @ux"
+echo "Skills available: @pm @task-decomposition @decision-framework @arch @dev @guard @qa @self-review @debugging @refactoring @api-design @data-modeling @performance @frontend-performance @video-ai @writer @seo @ux"
 ```
