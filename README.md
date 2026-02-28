@@ -41,44 +41,133 @@ This is a curated collection of **highly transferable** AI agent skills (85%+ po
 
 ## How to Use
 
-### As Git Submodule (Recommended)
+### Quick Setup (Recommended)
 
 ```bash
 # In your project root
-git submodule add https://github.com/your-username/ai-agent-skills-golden.git skills
+curl -sSL https://raw.githubusercontent.com/vshrinath/ai-agent-skills-golden/master/setup.sh | bash
+
+# Or download and run manually
+wget https://raw.githubusercontent.com/vshrinath/ai-agent-skills-golden/master/setup.sh
+chmod +x setup.sh
+./setup.sh
+```
+
+This will:
+- Add skills as a git submodule
+- Copy `AGENTS.md` and `CONVENTIONS.md` to your project root
+- Configure all supported AI tools (Cursor, Claude, Windsurf, Copilot, Gemini, etc.)
+- Create project-specific skills directory
+
+### Manual Setup
+
+#### As Git Submodule (Recommended)
+
+```bash
+# In your project root
+git submodule add https://github.com/vshrinath/ai-agent-skills-golden.git skills
 
 # Initialize and update
 git submodule update --init --recursive
 
-# Your project structure:
-your-project/
-├── skills/           # ← Golden skills (submodule)
-│   ├── product/
-│   ├── coding/
-│   └── ...
-├── .kiro/           # ← Project-specific overrides
-│   └── skills/
-└── src/
+# Copy configuration files
+cp skills/AGENTS.md .
+cp skills/CONVENTIONS.md .
+
+# Customize CONVENTIONS.md for your project
 ```
 
-### Direct Copy
+#### Direct Copy
 
 ```bash
 # Copy entire library
+git clone https://github.com/vshrinath/ai-agent-skills-golden.git
 cp -r ai-agent-skills-golden/ your-project/skills/
+rm -rf your-project/skills/.git
 
-# Or copy specific categories
-cp -r ai-agent-skills-golden/coding/ your-project/skills/
+# Copy configuration files
+cp skills/AGENTS.md .
+cp skills/CONVENTIONS.md .
 ```
 
-### Symlink (Development)
+### Project Structure After Setup
 
+```
+your-project/
+├── skills/              # ← Golden skills (submodule)
+│   ├── product/
+│   ├── coding/
+│   ├── marketing/
+│   ├── design/
+│   ├── ops/
+│   ├── meta/
+│   ├── AGENTS.md
+│   ├── CONVENTIONS.md
+│   └── INDEX.md
+├── .kiro/              # ← Project-specific overrides
+│   └── skills/
+│       ├── coding/
+│       └── ops/
+├── AGENTS.md           # ← Universal AI rules (copied from skills/)
+├── CONVENTIONS.md      # ← Project patterns (customize this)
+├── .cursor/            # ← Cursor configuration
+├── .windsurf/          # ← Windsurf configuration
+├── .github/            # ← GitHub Copilot configuration
+└── src/
+```
+
+## Tool-Specific Usage
+
+### Cursor
+```typescript
+// Skills loaded automatically via .cursor/rules.md
+// Use @skill-name syntax in chat
+@pm help me scope this feature
+@dev implement user authentication
+@guard review this code for security issues
+```
+
+### Claude Desktop
 ```bash
-# Link to shared library
-ln -s /path/to/ai-agent-skills-golden your-project/skills
+# Skills referenced via system prompt
+Load skills: @pm, @dev, @guard, @qa
+
+Task: Add user authentication to the dashboard
 ```
 
-## Updating Skills
+### Windsurf
+```bash
+# Use @skill-name syntax
+@pm @dev @guard
+
+I need to add user authentication. Help me scope it first, then implement securely.
+```
+
+### GitHub Copilot
+```bash
+# Reference configuration in chat
+#file:.github/copilot-instructions.md
+#file:skills/INDEX.md
+
+Help me implement user authentication following our project patterns
+```
+
+### Gemini CLI
+```bash
+# Use context flags
+gemini --context-file AGENTS.md \
+       --context-file CONVENTIONS.md \
+       --context-dir skills/ \
+       "Help me implement user authentication"
+```
+
+### Antigravity
+```bash
+# Include skills in context
+antigravity --include skills/ --include AGENTS.md --include CONVENTIONS.md
+```
+
+## Updating Skills Across All Projects
 
 ### For Submodule Users
 
