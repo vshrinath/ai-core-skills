@@ -4,6 +4,21 @@ All notable changes to this project will be documented in this file.
 
 ---
 
+## [2026-02-28] — v3.1.1: Sync skill index metadata with current catalog
+
+### What changed
+- Updated `INDEX.md` top-level count to `27 transferable + 1 Remotion-specific`
+- Added `v3.1.0` history note in `INDEX.md` to reflect the current 28-skill catalog
+- Expanded `INDEX.md` skill-loading example to include `@testing`, `@accessibility`, `@cloud`, and `@perf`
+
+### Why
+After the contract consistency fixes, `INDEX.md` still had stale summary metadata and an incomplete skill-loading example. This patch makes discovery docs match the actual skill set.
+
+### Files touched
+- `INDEX.md` — Updated count banner, version history, and skill-loading example
+
+---
+
 ## [2026-02-28] — v3.1.0: Fix contract inconsistencies, add 3 skills, symlink .kiro/skills
 
 ### What changed

@@ -374,7 +374,7 @@ This library is actively maintained. Skills are updated based on:
 
 ---
 
-**Version:** 3.1.0  
+**Version:** 3.1.1  
 **Last Updated:** 2026-02-28  
 **Skills:** 28 total (27 transferable + 1 Remotion-specific)  
 **Compatibility:** Universal AI assistants

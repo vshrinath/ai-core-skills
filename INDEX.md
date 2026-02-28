@@ -1,6 +1,6 @@
 # AI Core Skills - Index
 
-**24 highly transferable skills (85%+ portability) + 1 framework-specific skill (Remotion)**
+**27 highly transferable skills (85%+ portability) + 1 framework-specific skill (Remotion)**
 
 ---
 
@@ -162,6 +162,8 @@ For fully autonomous AI development:
 
 ## Version History
 
+- **v3.1.1** (2026-02-28) - Synced index metadata and skill-loading example with current 28-skill catalog
+- **v3.1.0** (2026-02-28) - Added @testing, @accessibility, and @cloud (28 total)
 - **v2.0.0** (2026-02-28) - Added 5 more skills: @arch, @dev, @data-modeling, @performance, @frontend-perf (23 total)
 - **v1.0.0** (2026-02-27) - Initial golden set with 18 skills
 - Extracted from production FoundingFuel project
@@ -206,5 +208,5 @@ git submodule add https://github.com/vshrinath/ai-core-skills.git skills
 git submodule update --init
 
 # Load core skills for any project
-echo "Skills available: @pm @task-decomposition @decision-framework @arch @dev @guard @qa @self-review @debugging @refactoring @api-design @data-modeling @performance @frontend-perf @video-ai @writer @seo @ux"
+echo "Skills available: @pm @task-decomposition @decision-framework @arch @dev @guard @qa @self-review @debugging @refactoring @api-design @data-modeling @performance @frontend-perf @testing @video-ai @writer @seo @perf @ux @accessibility @cloud"
 ```
