@@ -2,126 +2,100 @@
 
 **Build at the Speed of Decision.**
 
-This library transforms autonomous agents (Cursor, Windsurf, Claude Code, Aider, etc.) into a **simulated, high-performing product department**. It turns raw requirements into launched products by grounding agents in a rigorous, end-to-end lifecycle.
+The Virtual Product Factory is an autonomous product engineering department in a box. It transforms raw requirements into launched products by grounding agents in a rigorous, role-simulated lifecycle.
 
 ---
 
-## 🏗️ The Factory Map
+## ❓ What are Skills?
 
-Your project's high-level strategy is governed by **[AGENTS.md](AGENTS.md)** (Principles), while execution standards are grounded in **[CONVENTIONS.md](CONVENTIONS.md)**.
+Skills are high-signal markdown files that provide AI agents (Cursor, Windsurf, Claude, etc.) with **specialized knowledge, expert workflows, and guardrails**.
+
+Standard LLMs are generalists. Adding these skills to your project workspace transforms them into **specialists** who:
+- **Simulate Roles**: They act as PMs, Architects, or SEO experts based on the task.
+- **Enforce Rigor**: They follow established best practices (TDD, safety reviews, decomposition).
+- **Maintain Context**: They know *how* to build within the boundaries of your **CONVENTIONS.md**.
+
+---
+
+## 🏗️ The Factory Overview
+
+The Factory is organized into specialized "Departments." Each department coordinates a set of autonomous skills to move your product through the value chain.
 
 ```mermaid
 graph TD
-    %% Bedrock
-    subgraph FOUNDATION ["THE SOURCE OF TRUTH"]
-        A["AGENTS.MD<br/>(Principles)"] --- B["CONVENTIONS.MD<br/>(Standards)"]
+    subgraph FACTORY ["THE VIRTUAL PRODUCT FACTORY"]
+        direction TB
+        PO["PRODUCT OFFICE<br/>(Planning \u0026 Scoping)"]
+        EH["ENGINEERING HUB<br/>(Build \u0026 Quality)"]
+        GS["GROWTH STUDIO<br/>(Launch \u0026 SEO)"]
+        MO["META OFFICE<br/>(Autonomous Operations)"]
     end
 
-    %% Factory Entrance
-    REQ[("Fuzzy Requirement<br/>(The Objective)")] ==> FACTORY{{"THE VIRTUAL PRODUCT FACTORY"}}
+    %% Skills Mapping
+    PO --- S1["@pm<br/>@task-decomposition<br/>@decision-framework"]
+    EH --- S2["@arch<br/>@dev @qa<br/>@guard @refactoring"]
+    GS --- S3["@writer<br/>@seo @perf<br/>@video-ai"]
+    MO --- S4["@memory<br/>@error-recovery<br/>@confidence-scoring"]
 
-    %% Department Channels
-    FACTORY ==> PM_DEPT["PRODUCT OFFICE"]
-    FACTORY ==> ENG_DEPT["ENGINEERING HUB"]
-    FACTORY ==> GROWTH_DEPT["GROWTH STUDIO"]
-
-    %% The Production Line
-    subgraph Line ["Autonomous Multi-Agent Flow"]
-        PM["@pm<br/>(Backlog)"] ==> ARCH["@arch<br/>(Blueprint)"]
-        ARCH ==> DEV["@dev<br/>(TDD Build)"]
-        DEV ==> QA["@qa<br/>(Verification)"]
-        QA ==> GROWTH["@writer \u0026 @seo<br/>(Launch)"]
-    end
-
-    PM_DEPT --- PM
-    ENG_DEPT --- ARCH
-    ENG_DEPT --- DEV
-    ENG_DEPT --- QA
-    GROWTH_DEPT --- GROWTH
-
-    FOUNDATION ===> Line
+    %% Flow
+    FUZ[("Fuzzy<br/>Requirement")] ==> PO
+    PO ==> EH
+    EH ==> GS
+    GS ==> LAUNCH[("Market-Ready<br/>Product")]
 ```
 
 ---
 
 ## ⚡ Operational Playbooks
 
-The Factory provides specific "Methods" to handle the most common product challenges.
+The Factory uses three primary playbooks to manage the product lifecycle.
 
 ### 1. The Fuzzy Start (Ideation ➔ Backlog)
-*Handles: Vague requests, feature "asks," and undefined scope.*
-
-When you have a loose idea, the **Product Office** takes the lead to ground it in reality.
-
-```mermaid
-graph LR
-    FUZ[("Fuzzy<br/>Requirement")] --> PM["@pm<br/>(Goal Analysis)"]
-    PM --> DEC{"Trade-offs?<br/>Ambiguity?"}
-    DEC -- Yes --> DF["@decision-framework<br/>(Framework)"]
-    DF --> PM
-    DEC -- No --> TDC["@task-decomposition<br/>(Atomic Tasks)"]
-    TDC --> BACKLOG[("Grounded<br/>Backlog")]
-```
+*Handles: Vague requests and feature "asks."*
+The **Product Office** analyzes the goal, handles technical trade-offs via `@decision-framework`, and decomposes the request into a list of atomic, testable tasks.
 
 ### 2. Architectural Rigor (Blueprint ➔ TDD)
-*Handles: New features, system upgrades, and critical refactors.*
-
-Once scoped, the **Engineering Hub** simulates a senior architectural review before building.
-
-```mermaid
-graph LR
-    BACKLOG[("Backlog")] --> ARC["@arch<br/>(Architecture)"]
-    ARC --> CONV["Update<br/>CONVENTIONS.md"]
-    CONV --> QA["@qa<br/>(Test Plan)"]
-    QA --> DEV["@dev<br/>(TDD Build)"]
-    DEV --> GDR["@guard<br/>(Safety Review)"]
-    GDR --> CODE[("Verified Code")]
-```
+*Handles: New features and system upgrades.*
+The **Engineering Hub** creates a technical blueprint (`@arch`), establishes a test plan (`@qa`), and then builds via TDD (`@dev`). A final safety review (`@guard`) ensures zero convention drift.
 
 ### 3. The Growth Engine (Code ➔ Market)
-*Handles: Content marketing, SEO, and Go-To-Market assets.*
-
-Software isn't "done" until it's discoverable. The **Growth Studio** handles the launch.
-
-```mermaid
-graph TD
-    CODE[("Verified Code")] --> WRT["@writer<br/>(Product Copy)"]
-    WRT --> SEO["@seo<br/>(Technical grounding)"]
-    SEO --> PERF["@perf<br/>(Ad Creation)"]
-    PERF --> VID["@video<br/>(Visual Assets)"]
-    VID --> LAUNCH[("Market-Ready Launch")]
-```
+*Handles: Content marketing and SEO.*
+The **Growth Studio** handles the transition from "code complete" to "market ready." It generates SEO-grounded copy (`@writer`, `@seo`) and marketing assets (`@perf`, `@video-ai`).
 
 ---
 
-## 🦾 Autonomous Execution
+## 🦾 Integration & Onboarding
 
-Chain these skills together to run simulation cycles:
+There are two primary ways to bring the Virtual Product Factory into your workflow.
 
-- **Full Feature Cycle**: `@pm → @arch → @dev → @qa`
-- **Rapid Maintenance**: `@debugging → @dev → @guard`
-- **Launch Campaign**: `@writer → @seo → @video`
-
----
-
-## 🤖 Universal Compatibility
-
-This is a **grounding layer** for any autonomous agent:
-*   **Cursor**: Reference as `.cursor/rules.md`.
-*   **Windsurf**: Integrate via `.windsurfrules`.
-*   **Claude Code**: Symlink to `claude.md`.
-*   **Aider**: Pass as read-only context.
-
----
-
-## 🚀 Setup
-
-Reference **[CONVENTIONS.md](CONVENTIONS.md)** to ground the factory in your specific standards.
+### 1. Production Method: Git Submodule (Recommended)
+For long-term project stability, add the factory as a submodule. This ensures your agents always have access to the latest skills while maintaining version control.
 
 ```bash
-# Initialize the Virtual Product Factory
+# Add the factory to your project
+git submodule add https://github.com/vshrinath/ai-core-skills.git .vpf
+git submodule update --init --recursive
+```
+
+### 2. Quick Start: Curl
+Use the setup script for one-off tasks or rapid prototyping.
+
+```bash
 curl -sSL https://raw.githubusercontent.com/vshrinath/ai-core-skills/main/setup.sh | bash
 ```
+
+### 🛠️ How `setup.sh` Works
+The setup script detects your environment and **symlinks** the relevant skill files into your agent-specific configuration paths:
+- **Cursor**: Symlinks to `.cursorrules` or `.cursor/rules/`.
+- **Windsurf**: Symlinks to `.windsurfrules`.
+- **General**: Creates global grounding for Claude Code and other agents.
+
+---
+
+## 🗺️ Navigation
+- **[CONVENTIONS.md](CONVENTIONS.md)**: Your project's unique "Source of Truth."
+- **[AGENTS.md](AGENTS.md)**: The principles and handoff rules for your factory.
+- **[INDEX.md](INDEX.md)**: A complete technical reference of all 28+ skills.
 
 ---
 
