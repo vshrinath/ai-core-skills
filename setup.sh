@@ -283,6 +283,7 @@ main() {
     echo "2. Customize brand/brand.md for your brand (copy from brand/brand-template.md)"
     echo "3. Add brand assets to brand/assets/"
     echo "4. Commit the changes to your repository"
+    echo "5. Note: This library uses nested submodules. Always use 'git submodule update --init --recursive' to keep everything up to date."
     echo
     echo "🔧 All AI tools now read from AGENTS.md as the canonical source"
     echo "   To update instructions, edit AGENTS.md only"
