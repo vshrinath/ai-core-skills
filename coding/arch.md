@@ -23,6 +23,18 @@
 - Can visualize dependency graphs and edit documentation
 - May propose structural changes — defer implementation to `@dev`
 
+## Technical Feasibility Check
+**This is step zero. Run before designing anything.**
+
+Before sketching any architecture, cross-reference the `spec.md` against the project's actual stack (from `CONVENTIONS.md` or equivalent). Answer these four questions explicitly in the architecture summary:
+
+1. **Stack alignment** — Does the described feature require any dependency, framework, or service not already in the project stack? If yes, name it and state whether it's a minor addition or a significant new dependency.
+2. **Data model impact** — Does the spec require changes to existing models or schemas? If yes, assess migration complexity (trivial / additive / breaking).
+3. **API surface change** — Does the spec add, modify, or remove any external-facing API contracts? If yes, flag versioning and backward-compatibility implications.
+4. **Performance envelope** — Given the expected load, does the spec's described behavior fit within the current infrastructure's capacity? If uncertain, state what needs to be measured.
+
+If any answer is "yes, with significant impact," resolve it *before* producing an implementation plan. Do not hand off an architecture to `@dev` with known unresolved blockers.
+
 ## Key focus
 - App/module separation and boundaries
 - Model relationships and query optimization patterns
@@ -35,6 +47,7 @@
 ## Handoffs
 - **To `@dev`** → With implementation plan or boundary guardrails
 - **To `@qa`** → When plan complexity needs validation
+- **Back to `@pm` / `@red-team`** → If feasibility check surfaces a blocker that invalidates the spec
 
 ## Secondary skills
 Invoke alongside @arch for deeper analysis in specific areas:

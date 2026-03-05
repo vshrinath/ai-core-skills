@@ -47,6 +47,7 @@ Run into a problem or have a question? Open an issue — we're happy to help.
 | Skill | Department | What it does |
 | :--- | :--- | :--- |
 | **[@pm](product/pm.md)** | Product Office | Defines scope, translates ideas to specs, and explicitly marks what is *out* of scope. |
+| **[@red-team](product/red-team.md)** | Product Office | Audits `spec.md` before build: surfaces second-order risks, unsupported assumptions, and adoption failure points. |
 | **[@task-decomposition](product/task-decomposition.md)** | Product Office | Breaks large features into small, independently deployable iterative slices. |
 | **[@decision-framework](product/decision-framework.md)** | Product Office | Evaluates technical/product decisions using rigid criteria (Cost, Benefit, Reversible). |
 | **[@ux](design/ux.md)** | Product Office | Enforces UI/UX consistency, mobile-first design, and interactive states. |
