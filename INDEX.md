@@ -1,206 +1,110 @@
-# The Virtual Product Factory Index
+# The Virtual Product Factory — Skill Index
 
-**28 highly transferable skills (85%+ portability) + 1 framework-specific skill (Remotion)**
-
----
-
-## Quick Reference
-
-### Standard workflow (full feature)
-```
-@pm → @ux → @arch → @dev → @guard → @qa
-```
-
-### Small coding fix
-```
-@dev → @guard
-```
-
-### Content / marketing
-```
-@writer → @seo
-```
-
-### Bug investigation
-```
-@debugging → @dev → @guard
-```
-
-### High-stakes decision
-```
-@decision-framework → @arch → @dev
-```
+*The authoritative reference for all skills. For the quick overview, see [README.md](README.md).*
 
 ---
 
 ## All Skills
 
-### 1. Product Office (Strategy \u0026 UX)
+### 1. Product Office
 
-| Skill | File | Use when | Transferability |
-|-------|------|----------|----------------|
-| `@pm` | `product/pm.md` | Feature scoping, requirements, acceptance criteria | 100% |
-| `@red-team` | `product/red-team.md` | Adversarial spec audit: second-order risks, unsupported assumptions, kill conditions | 100% |
-| `@task-decomposition` | `product/task-decomposition.md` | Breaking features into small, testable tasks with dependencies | 100% |
-| `@decision-framework` | `product/decision-framework.md` | Architecture decisions, high-stakes trade-offs | 100% |
-| `@ux` | `design/ux.md` | User flows, component states, form design | 90% |
-| `@accessibility` | `design/accessibility.md` | Semantic HTML, ARIA, WCAG compliance | 95% |
+| Skill | What it does | Produces |
+|-------|-------------|---------|
+| [`@pm`](product/pm.md) | Translates vague ideas into scoped, testable specs. Asks clarifying questions. Marks in/out of scope explicitly. | `spec.md` |
+| [`@red-team`](product/red-team.md) | Adversarial audit of a spec before build. Identifies second-order risks, unsupported assumptions, and adoption failure points. | `red-team-audit-<feature>.md` |
+| [`@task-decomposition`](product/task-decomposition.md) | Breaks an approved spec into small, independently shippable tasks with dependencies mapped. | Task graph (appended to `spec.md` or standalone) |
+| [`@decision-framework`](product/decision-framework.md) | Evaluates competing technical or product options using explicit criteria. Forces a documented decision. | ADR (Architecture Decision Record) |
+| [`@ux`](design/ux.md) | Produces user flows, component states, and interaction specs. Catches usability issues before build. | UX spec / annotated flow |
+| [`@accessibility`](design/accessibility.md) | Enforces semantic HTML, ARIA, keyboard navigation, and WCAG compliance. | Accessibility audit + fixes |
 
-### 2. Engineering Hub (Architecture \u0026 Build)
+### 2. Engineering Hub
 
-| Skill | File | Use when | Transferability |
-|-------|------|----------|----------------|
-| `@arch` | `coding/arch.md` | Architectural decisions, system design, service boundaries | 90% |
-| `@dev` | `coding/dev.md` | Any implementation task — backend, frontend, or both | 90% |
-| `@api-design` | `coding/api-design.md` | Designing or reviewing API endpoints and contracts | 90% |
-| `@data-modeling` | `coding/data-modeling.md` | Schema design, model relationships, migrations | 90% |
-| `@git-workflow` | `coding/git-workflow.md` | Commit messages, changelog maintenance, file organization | 100% |
+| Skill | What it does | Produces |
+|-------|-------------|---------|
+| [`@arch`](coding/arch.md) | Designs system structure, data flows, and service boundaries. Runs Technical Feasibility Check before any design work. | `tech-spec.md` |
+| [`@dev`](coding/dev.md) | Implements backend, frontend, or full-stack tasks. Follows the Logic → API → UI sequence. | Code diff + verification proof |
+| [`@api-design`](coding/api-design.md) | Designs or reviews API endpoints, request/response contracts, and versioning. | API contract document |
+| [`@data-modeling`](coding/data-modeling.md) | Designs schemas, model relationships, and migration strategies. | Schema definition + migration plan |
+| [`@git-workflow`](coding/git-workflow.md) | Enforces commit message format, changelog discipline, and file organization. | Structured commit + changelog entry |
 
-### 3. Quality \u0026 Safety Lab (Verification \u0026 Perf)
+### 3. Quality & Safety Lab
 
-| Skill | File | Use when | Transferability |
-|-------|------|----------|----------------|
-| `@guard` | `coding/guard.md` | Code review, security audit, convention drift check | 95% |
-| `@qa` | `coding/qa.md` | Testing, edge cases, regression verification | 95% |
-| `@self-review` | `coding/self-review.md` | Pre-handoff quality check before requesting code review | 95% |
-| `@debugging` | `coding/debugging.md` | Bug investigation and root cause analysis | 95% |
-| `@performance` | `coding/performance.md` | Backend performance and caching | 90% |
-| `@frontend-perf` | `coding/frontend-performance.md` | Frontend performance and Web Vitals | 95% |
-| `@testing` | `coding/testing.md` | Testing strategy, TDD, mocking | 95% |
-| `@refactoring` | `coding/refactoring.md` | Code smells and structural cleanup | 95% |
+| Skill | What it does | Produces |
+|-------|-------------|---------|
+| [`@guard`](coding/guard.md) | Code review for security vulnerabilities, bad boundaries, and convention drift. | `risk-report.md` or explicit "Pass" |
+| [`@qa`](coding/qa.md) | Tests edge cases, regressions, and coverage gaps. Defines what "done" looks like in tests. | Test plan + pass/fail report |
+| [`@self-review`](coding/self-review.md) | Pre-handoff quality check before requesting code review. Catches obvious issues before `@guard` sees them. | Annotated diff (inline) |
+| [`@debugging`](coding/debugging.md) | Investigates bugs with root cause analysis. Does not fix — diagnoses and hands off to `@dev`. | Debug report (inline annotation) |
+| [`@refactoring`](coding/refactoring.md) | Structural cleanup without behavior change. Identifies code smells and removes them safely. | Refactored code (in-place) |
+| [`@performance`](coding/performance.md) | Identifies slow queries, caching opportunities, and backend bottlenecks. | Performance report |
+| [`@frontend-perf`](coding/frontend-performance.md) | Improves Web Vitals, bundle size, and rendering performance. | Frontend performance report |
+| [`@testing`](coding/testing.md) | Defines testing strategy, TDD approach, and mocking patterns. | Test strategy doc + test files |
 
-### 4. Infra Lab (Cloud \u0026 DevOps)
+### 4. Infra Lab
 
-| Skill | File | Use when | Transferability |
-|-------|------|----------|----------------|
-| `@deployment` | `ops/deployment-practices.md` | Universal deployment principles (any stack) | 100% |
-| `@cicd` | `ops/cicd-pipelines.md` | GitHub Actions CI/CD setup and configuration | 95% |
-| `@cloud` | `ops/cloud.md` | Infrastructure architecture, IaC, cloud security | 90% |
+| Skill | What it does | Produces |
+|-------|-------------|---------|
+| [`@deployment`](ops/deployment-practices.md) | Universal deployment principles — rollout strategies, environment parity, rollback plans. | Deployment runbook |
+| [`@cicd`](ops/cicd-pipelines.md) | GitHub Actions CI/CD setup and configuration. | Pipeline config files |
+| [`@cloud`](ops/cloud.md) | Infrastructure architecture, IaC, and cloud security posture. | IaC files + infrastructure diagram |
 
-### 5. Growth Studio (Launch \u0026 SEO)
+### 5. Growth Studio
 
-| Skill | File | Use when | Transferability |
-|-------|------|----------|----------------|
-| `@writer` | `marketing/writer.md` | Articles, newsletters, social posts, campaigns | 95% |
-| `@seo` | `marketing/seo.md` | Meta tags, structured data, technical SEO | 90% |
-| `@perf` | `marketing/perf.md` | Ad copy, landing pages, UTM tracking | 85% |
-| `@video-ai` | `marketing/video-ai.md` | AI video generation (Runway, Kling, fal.ai) | 100% |
-| `@video` | `marketing/video.md` | Remotion video production | Remotion-spec |
+| Skill | What it does | Produces |
+|-------|-------------|---------|
+| [`@writer`](marketing/writer.md) | Articles, newsletters, social posts, and email campaigns. Matches tone to audience. | Draft content |
+| [`@seo`](marketing/seo.md) | Meta tags, structured data, technical SEO, and crawlability. | SEO audit + implementation checklist |
+| [`@perf`](marketing/perf.md) | Ad copy, landing pages, UTM tracking, and A/B test design. | Campaign assets |
+| [`@video-ai`](marketing/video-ai.md) | AI video generation using Runway, Kling, and fal.ai. | Video brief + generated output |
+| [`@video`](marketing/video.md) | Remotion-specific video production (code-driven video). | Remotion component |
 
-### 6. Meta Office (Agent Cognition)
+### 6. Meta Office
 
-| Skill | File | Use when | Transferability |
-|-------|------|----------|----------------|
-| `@memory` | `meta/memory.md` | Persisting state and plans across long sessions | 100% |
-| `@confidence-scoring` | `meta/confidence-scoring.md` | Assessing confidence level and risk | 100% |
-| `@context-strategy` | `meta/context-strategy.md` | Managing limited context window | 100% |
-| `@error-recovery` | `meta/error-recovery.md` | Handling failures autonomously | 100% |
+| Skill | What it does | Produces |
+|-------|-------------|---------|
+| [`@memory`](meta/memory.md) | Persists agent state, decisions, and execution plans across sessions. | `memory.md` (chronological log) |
+| [`@confidence-scoring`](meta/confidence-scoring.md) | Assesses confidence level and risk before acting on low-certainty tasks. | Confidence report (inline) |
+| [`@context-strategy`](meta/context-strategy.md) | Manages limited context window — decides what to load and what to release. | Pruned context summary |
+| [`@error-recovery`](meta/error-recovery.md) | Handles test, build, or deployment failures autonomously without human escalation. | Recovery log (inline) |
 
 ---
 
-## Secondary Skills — When to Pair
+## When to Pair Skills
 
 Secondary skills are invoked *alongside* a primary skill, not instead of one.
 
 | If you're doing... | Also invoke |
 |--------------------|-------------|
-| Implementing features that touch the API | `@api-design` |
-| Implementing features that change models/schema | `@data-modeling` |
-| Implementing backend features on hot paths or with caching | `@performance` |
-| Implementing frontend features with performance concerns | `@frontend-perf` |
-| Completing implementation before handoff | `@self-review` |
-| Reviewing API surface changes | `@api-design` |
-| Reviewing schema changes or migrations | `@data-modeling` |
-| Reviewing backend performance-critical code | `@performance` |
-| Reviewing frontend performance-critical code | `@frontend-perf` |
+| Implementation touching the API | `@api-design` |
+| Implementation changing models or schema | `@data-modeling` |
+| Backend implementation on hot paths | `@performance` |
+| Frontend implementation with perf concerns | `@frontend-perf` |
+| Any implementation before handoff | `@self-review` |
 | Investigating a bug | `@debugging` |
 | Cleaning up code as part of a task | `@refactoring` |
 | Planning work breakdown | `@task-decomposition` |
 | High-stakes decisions with unclear tradeoffs | `@decision-framework` |
-| Assessing task difficulty | `@confidence-scoring` |
-| Managing large codebase navigation | `@context-strategy` |
-| Handling failures or errors | `@error-recovery` |
-| Working on complex, multi-step, or multi-day tasks | `@memory` |
+| Assessing task risk or complexity | `@confidence-scoring` |
+| Large codebase navigation | `@context-strategy` |
+| Handling failures mid-task | `@error-recovery` |
+| Multi-day or complex tasks | `@memory` |
 
 ---
 
 ## Handoff Chain
 
 ```
-@pm          →  Scoped requirements with acceptance criteria
-  @ux        →  User flows and component specs
-    @arch    →  System design and implementation plan
-      @dev   →  Working implementation
-        @self-review → Pre-handoff quality check
-          @guard →  Code review: security, correctness, conventions
-            @qa  →  Testing: edge cases, coverage, regressions
+@pm          →  spec.md: problem, acceptance criteria, in/out of scope
+  @red-team  →  red-team-audit.md: PASS / REVISE / ABANDON (gate — required)
+    @ux       →  UX spec: user flows, component states
+      @arch   →  tech-spec.md: system design, service boundaries
+        @dev  →  Working implementation
+          @self-review  →  Pre-handoff quality check
+            @guard  →  risk-report.md: security, correctness, conventions
+              @qa   →  Test report: edge cases, coverage, regressions
 ```
 
-**Skip any step that doesn't apply.** A bug fix doesn't need `@pm` or `@ux`. A content task doesn't need `@arch`.
-
----
-
-## Autonomous Workflow
-
-For fully autonomous AI development:
-
-```
-1. @task-decomposition  →  Break feature into small, testable tasks
-2. @confidence-scoring  →  Assess confidence for each task; ask before low-confidence ones
-3. @context-strategy    →  Load only what's needed for the current task
-4. @arch                →  Design system structure if needed
-5. @dev                 →  Implement
-6. @self-review         →  Check own work before handoff
-7. @guard               →  Security/convention review
-8. @qa                  →  Test
-```
-
-**`@error-recovery` is not a sequential step** — invoke it at any point when a test, build, or deployment fails.
-
-**`@confidence-scoring` applies per task**, not just once at the start. Re-assess before each task in the decomposed list.
-
----
-
----
-
-## Usage Examples
-
-### Loading Skills in Different AI Assistants
-
-**Claude/Cursor:**
-```
-Load skills: @pm, @ux, @arch, @dev, @guard, @qa
-
-Task: Add user authentication to the dashboard
-```
-
-**GitHub Copilot Chat:**
-```
-#file:skills/product/pm.md
-#file:skills/coding/arch.md
-#file:skills/coding/dev.md
-#file:skills/coding/guard.md
-
-Help me scope and implement user authentication
-```
-
-**Windsurf:**
-```
-@pm @arch @dev @guard
-
-I need to add user authentication. Help me scope it first, then design and implement securely.
-```
-
-### Project Setup
-
-```bash
-# New project setup
-git submodule add https://github.com/vshrinath/virtual-product-factory.git skills
-git submodule update --init
-
-# Load core skills for any project
-echo "Skills available: @pm @task-decomposition @decision-framework @arch @dev @guard @qa @self-review @debugging @refactoring @api-design @data-modeling @performance @frontend-perf @testing @video-ai @writer @seo @perf @ux @accessibility @deployment @cicd @cloud @memory"
-```
+**Skip steps that don't apply.** A bug fix starts at `@debugging → @dev → @guard`. A content task starts at `@writer → @seo`. `@error-recovery` is not sequential — invoke it any time a build, test, or deployment fails.
 
 ---
 

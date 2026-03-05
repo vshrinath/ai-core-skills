@@ -154,51 +154,40 @@ setup_all_tools() {
 # Setup Kiro configuration
 setup_kiro() {
     print_status "Setting up Kiro configuration..."
-    
-    # Kiro expects skills in .kiro/skills/ directory
+
+    # Symlink the entire skills directory into .kiro/skills
+    # Kiro expects: .kiro/skills/coding/, .kiro/skills/product/, etc.
     mkdir -p .kiro/skills
-    
-    # Determine source directory for skills
-    local source_dir="."
+    local skills_source="."
     if [ "$IS_SOURCE_REPO" = false ] && [ -d "$SKILLS_DIR" ]; then
-        source_dir="$SKILLS_DIR"
+        skills_source="$SKILLS_DIR"
     fi
-    
-    # Symlink skills from source to Kiro's expected location
-    if [ -d "$source_dir/coding" ]; then
-        # We need relative paths for symlinks to work correctly
-        local rel_source="../../"
-        if [ "$IS_SOURCE_REPO" = false ] && [ -d "$SKILLS_DIR" ]; then
-            rel_source="../../$SKILLS_DIR/"
-        fi
-        
-        ln -sf "${rel_source}coding" .kiro/skills/coding 2>/dev/null || true
-        ln -sf "${rel_source}design" .kiro/skills/design 2>/dev/null || true
-        ln -sf "${rel_source}marketing" .kiro/skills/marketing 2>/dev/null || true
-        ln -sf "${rel_source}meta" .kiro/skills/meta 2>/dev/null || true
-        ln -sf "${rel_source}ops" .kiro/skills/ops 2>/dev/null || true
-        ln -sf "${rel_source}product" .kiro/skills/product 2>/dev/null || true
+
+    if [ -d "$skills_source/coding" ]; then
+        rm -f .kiro/skills 2>/dev/null || true
+        ln -sf "../$skills_source" .kiro/skills 2>/dev/null || true
         print_success "Skills symlinked to .kiro/skills/"
     fi
-    
+
     # Copy brand template if brand.md doesn't exist
-    if [ ! -f "brand/brand.md" ] && [ -d "$source_dir/brand" ]; then
+    if [ ! -f "brand/brand.md" ] && [ -d "$skills_source/brand" ]; then
         mkdir -p brand/assets
-        cp "$source_dir/brand/brand-template.md" brand/brand.md
-        cp "$source_dir/brand/brand-template.md" brand/brand-template.md
-        if [ -f "$source_dir/brand/README.md" ]; then
-            cp "$source_dir/brand/README.md" brand/
+        cp "$skills_source/brand/brand-template.md" brand/brand.md
+        cp "$skills_source/brand/brand-template.md" brand/brand-template.md
+        if [ -f "$skills_source/brand/README.md" ]; then
+            cp "$skills_source/brand/README.md" brand/
         fi
         touch brand/assets/.gitkeep
         print_success "Brand template copied to brand/brand.md"
     fi
-    
+
     # Symlink AGENTS.md to Kiro steering
     mkdir -p .kiro/steering
     ln -sf ../../AGENTS.md .kiro/steering/agents.md 2>/dev/null || true
-    
+
     print_success "Kiro configuration complete"
 }
+
 
 # Main setup function
 main() {
@@ -288,10 +277,8 @@ main() {
     echo "🔧 All AI tools now read from AGENTS.md as the canonical source"
     echo "   To update instructions, edit AGENTS.md only"
     echo
-    echo "📚 Available skills: @pm, @task-decomposition, @decision-framework, @arch, @dev,"
-    echo "   @guard, @qa, @self-review, @debugging, @refactoring, @api-design, @data-modeling,"
-    echo "   @performance, @frontend-perf, @video-ai, @video, @writer, @seo, @perf, @ux,"
-    echo "   @confidence-scoring, @context-strategy, @error-recovery, @memory"
+    echo "📚 Available skills: see INDEX.md for the full skill reference"
+
 }
 
 # Run main function

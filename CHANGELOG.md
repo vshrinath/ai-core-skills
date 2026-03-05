@@ -2,22 +2,33 @@
 
 All notable changes to **The Virtual Product Factory** will be documented in this file.
 
-## [2026-03-04] — Rebrand to The Virtual Product Factory
+---
 
-**Commit**: `HEAD` on branch `master`
+## [2026-03-05] — Red-Team Audit + Structural Hardening
+
+**Branch**: `master`
 
 ### What changed
-- Rebranded repository to **"The Virtual Product Factory"** to reflect end-to-end product lifecycle simulation.
-- Overhauled `README.md` with a new narrative, a visual department map, and three operational playbooks (Fuzzy Start, Architectural Rigor, Growth Engine) using Mermaid diagrams.
-- Updated `INDEX.md` with the new branding and a "Related AI Skills & Resources" section.
-- Added a link to the new **"AI Skills & Reference"** NotebookLM vault for curated external expertise.
-- Updated `setup.sh` to support recursive submodule initialization and added a post-installation note.
+- Added `product/red-team.md` — new adversarial spec audit skill with 5-question protocol and PASS / REVISE / ABANDON verdict
+- Added Technical Feasibility Check to `coding/arch.md` — step zero before any design work, cross-referencing spec against project stack
+- Added `## Startup Protocol` to `AGENTS.md` — defines exactly two files loaded on session start; skill files load on-demand only. Includes minimum working set table.
+- Added `@red-team` to `AGENTS.md` Handoff Triggers table with explicit document gate: audit file must exist before handoff to `@arch`
+- `AGENTS.md` workflow chain updated: `@pm → @red-team → @ux → @arch → @dev → @guard → @qa`
+- Rewrote `INDEX.md` — dropped Transferability column, removed duplicate Quick Reference and Usage Examples sections, added Produces column, updated Handoff Chain to include `@red-team`
+- Added `## Quick Start` section to `README.md` — six copy-paste prompts above the departmental diagram
+- Added `## Artifact Registry` to `README.md` — maps each skill to its named output artifact
+- Declared `INDEX.md` as canonical skill inventory in both `README.md` and `AGENTS.md`
+- Trimmed `CONVENTIONS.md` from 459 lines to ~130 — removed boilerplate code examples, removed stale `.kiro/skills/` references, kept only actionable placeholder structure
+- Removed hardcoded skill list from `setup.sh` echo block
 
 ### Why
-To improve the repository's impact, clarity, and perceived value by presenting it as a cohesive "Virtual Product Factory" rather than just a collection of skill files. This helps users understand how to sequence skills for autonomous multi-agent workflows.
+Red-team audit of the VPF's own documentation revealed four structural weaknesses: no defined loading contract for agents, no quick-start for new users, taxonomy drift across multiple files, and documentation claiming autonomous routing without evidence. This commit closes the first three findings.
 
 ### Files touched
-- `README.md` — Total overhaul with new narrative and diagrams.
-- `INDEX.md` — Updated branding and added external resource links.
-- `setup.sh` — Added recursive submodule support and user guidance.
-- `AGENTS.md` — (Verified) terminology consistency.
+- `product/red-team.md` — new file
+- `coding/arch.md` — Technical Feasibility Check added
+- `AGENTS.md` — Startup Protocol, updated workflow chain, Handoff Triggers table, @red-team in skills listing
+- `INDEX.md` — full rewrite
+- `README.md` — Quick Start section, Artifact Registry, canonical taxonomy note, @red-team in Skills Directory and Handoff Protocol
+- `CONVENTIONS.md` — trimmed and cleaned
+- `setup.sh` — removed hardcoded skill list

@@ -337,14 +337,14 @@ When renaming or retiring a skill:
 - `@ux` — User flows, component states, accessibility, form design
 - `@accessibility` — Semantic HTML, ARIA, keyboard navigation
 
-**2. Engineering Hub (Architecture \u0026 Build)** — `skills/coding/`:
+**2. Engineering Hub (Architecture & Build)** — `coding/`:
 - `@arch` — Architectural decisions, system design, service boundaries
 - `@dev` — Implementation: backend, frontend, search indexing, SEO metadata
 - `@api-design` — Designing or reviewing API endpoints and contracts
 - `@data-modeling` — Schema design, model relationships, migrations
 - `@git-workflow` — Commit messages, changelog maintenance, file organization
 
-**3. Quality \u0026 Safety Lab (Verification \u0026 Perf)** — `skills/coding/`:
+**3. Quality & Safety Lab (Verification & Perf)** — `coding/`:
 - `@guard` — Code review, security audit, convention drift check
 - `@qa` — Testing, edge cases, regression verification
 - `@self-review` — Pre-handoff quality check
@@ -354,19 +354,19 @@ When renaming or retiring a skill:
 - `@frontend-perf` — Frontend performance: Web Vitals, bundle size
 - `@testing` — Testing strategy, TDD, mocking
 
-**4. Infra Lab (Cloud \u0026 DevOps)** — `skills/ops/`:
-- `deployment-practices` — Universal deployment principles
-- `cicd-pipelines` — GitHub Actions CI/CD setup
+**4. Infra Lab (Cloud & DevOps)** — `ops/`:
+- `@deployment` — Universal deployment principles
+- `@cicd` — GitHub Actions CI/CD setup
 - `@cloud` — Infrastructure architecture, IaC, cloud security
 
-**5. Growth Studio (Launch \u0026 SEO)** — `skills/marketing/`:
+**5. Growth Studio (Launch & SEO)** — `marketing/`:
 - `@writer` — Articles, newsletters, social posts, email campaigns
 - `@seo` — Meta tags, structured data, technical SEO
 - `@perf` — Ad copy, landing pages, UTM tracking, A/B tests
 - `@video-ai` — AI video generation (Runway, Kling, fal.ai)
 - `@video` — Remotion-specific video production
 
-**6. Meta Office (Agent Cognition)** — `skills/meta/`:
+**6. Meta Office (Agent Cognition)** — `meta/`:
 - `@memory` — Persisting state and execution plans across sessions
 - `@confidence-scoring` — Assessing confidence level and risk
 - `@context-strategy` — Efficient file navigation and context management
@@ -376,8 +376,10 @@ When renaming or retiring a skill:
 
 **Building a feature:**
 ```
-@pm → @ux → @arch → @dev → @guard → @qa
+@pm → @red-team → @ux → @arch → @dev → @guard → @qa
 ```
+
+> **Gate:** Do not proceed from `@red-team` to `@arch` until a `red-team-audit-<feature>.md` file exists and has been acknowledged by `@pm`. If the file does not exist, create it before handing off. This is not optional.
 
 **Small coding fix:**
 ```
@@ -410,7 +412,10 @@ Open questions: None — ready to implement.
 
 | From | To | When |
 |------|----|------|
-| `@pm` | `@ux` or `@arch` | Requirements finalized — ready for design or architecture |
+| `@pm` | `@red-team` | Spec is written — run adversarial audit before any design work begins |
+| `@red-team` | `@pm` | Audit complete — PM must acknowledge findings (PASS / REVISE / ABANDON) |
+| `@red-team` | `@arch` | PM confirms "proceed". Audit doc (`red-team-audit-<feature>.md`) **must exist**. If it doesn't, write it first. |
+| `@pm` | `@ux` or `@arch` | Requirements finalized without red-team (small changes only) |
 | `@ux` | `@arch` or `@dev` | Design specs complete — ready for architecture or implementation |
 | `@arch` | `@dev` | Architecture finalized — implementation plan ready |
 | `@dev` | `@self-review` | Implementation complete — ready for self-check |
