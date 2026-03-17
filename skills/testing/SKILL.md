@@ -20,6 +20,8 @@ compatibility:
 
 **Philosophy:** Tests are documentation that executes. A feature isn't complete until it's verifiably correct.
 
+**Before producing any output, read `CONVENTIONS.md` for testing framework, test location, and naming conventions.**
+
 ## When to invoke
 - Before writing implementation code (TDD approach)
 - Writing unit, integration, or E2E tests

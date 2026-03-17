@@ -22,6 +22,8 @@ compatibility:
 
 **Philosophy:** Prevent silent coupling. Systems should evolve cleanly without hidden dependencies.
 
+**Before producing any output, read `CONVENTIONS.md` for stack, code style, and project-specific patterns.**
+
 ## When to invoke
 - Design decisions affecting multiple apps or services
 - New content types, model changes, or API surface changes

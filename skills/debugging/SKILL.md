@@ -20,6 +20,8 @@ compatibility:
 
 **Philosophy:** Debugging is hypothesis testing, not random code changes. Understand the problem before attempting a fix.
 
+**Before producing any output, read `CONVENTIONS.md` for stack and project-specific patterns.**
+
 ## When to invoke
 - Bug reports (production or development)
 - Unexpected behavior or errors

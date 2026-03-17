@@ -20,6 +20,8 @@ compatibility:
 
 **Philosophy:** Build artifacts should be deterministic, reproducible, and fail fast when misconfigured.
 
+**Before producing any output, read `CONVENTIONS.md` for deployment target, environment variables, and project structure.**
+
 ## When to use this guide
 - Setting up Docker builds for any language/framework
 - Establishing dependency management practices

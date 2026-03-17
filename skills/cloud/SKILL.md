@@ -20,6 +20,8 @@ compatibility:
 
 **Philosophy:** Infrastructure is code. Deployments should be boring, repeatable, and scalable.
 
+**Before producing any output, read `CONVENTIONS.md` for deployment target and infrastructure conventions.**
+
 ## When to invoke
 - Designing system architecture
 - Setting up deployment pipelines (CI/CD)

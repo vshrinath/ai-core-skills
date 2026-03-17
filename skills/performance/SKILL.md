@@ -20,6 +20,8 @@ compatibility:
 
 **Philosophy:** Measure first, optimize second. Premature optimization is the root of all evil, but ignoring performance until production breaks is worse.
 
+**Before producing any output, read `CONVENTIONS.md` for stack, ORM, and caching conventions.**
+
 **Note**: For frontend/client-side performance (bundle size, Core Web Vitals, image optimization), see `@frontend-perf`.
 
 ## When to invoke

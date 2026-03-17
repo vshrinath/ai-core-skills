@@ -21,6 +21,8 @@ compatibility:
 
 **Philosophy:** Ship working software with clarity and speed.
 
+**Before producing any output, read `CONVENTIONS.md` for stack, code style, and project-specific patterns.**
+
 ## When to invoke
 - Any implementation task — backend, frontend, or both
 - Building views, serializers, components, templates

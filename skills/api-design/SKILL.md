@@ -20,6 +20,8 @@ compatibility:
 
 **Philosophy:** APIs are contracts. Design for clarity, consistency, and evolution.
 
+**Before producing any output, read `CONVENTIONS.md` for stack, code style, and project-specific patterns.**
+
 ## When to invoke
 - Designing new API endpoints
 - Versioning existing APIs

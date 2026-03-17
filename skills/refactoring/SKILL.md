@@ -21,6 +21,8 @@ compatibility:
 
 **Philosophy:** Make the change easy, then make the easy change. Refactoring is not rewriting.
 
+**Before producing any output, read `CONVENTIONS.md` for code style, naming conventions, and project-specific patterns.**
+
 ## When to invoke
 - Code smells detected (duplication, complexity, unclear naming)
 - Before adding new features to messy code

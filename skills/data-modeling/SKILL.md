@@ -20,6 +20,8 @@ compatibility:
 
 **Philosophy:** Schema design is architecture. Get it right early, or pay the migration cost later.
 
+**Before producing any output, read `CONVENTIONS.md` for stack, ORM, and database conventions.**
+
 ## When to invoke
 - Designing new models/tables
 - Planning database migrations
