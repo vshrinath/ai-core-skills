@@ -199,14 +199,22 @@ Before running tests, builds, or commands, verify the execution context:
 - Deleting files
 - Modifying settings or production config files
 
+## Artifact
+**Always append a verification summary to `implementation-notes.md`** after completing work. This is the baton passed to `@guard`. Minimum content:
+- What was implemented (1-2 sentences)
+- Verification method used and result
+- Files changed (list)
+- Any known risks or deferred decisions
+
 ## Handoffs
-- **To `@guard`** → After implementation, especially if AI-generated or complex logic
-- **To `@qa`** → Before merging or committing
+- **To `@self-review`** → Before passing to `@guard` — catch obvious issues first
+- **To `@guard`** → `implementation-notes.md` + the diff — ready for security and sanity review
+- **To `@qa`** → After `@guard` passes
 - **To `@arch`** → When encountering unclear system boundaries
 
 ## Output
 - Working code matching the project's existing patterns and conventions
-- Changelog summary of changes
+- `implementation-notes.md` — verification proof and change summary
 - Migration notes if models changed
 
 ## Secondary skills

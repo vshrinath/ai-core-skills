@@ -120,14 +120,20 @@ Present options with tradeoffs, not recommendations:
 
 Let the user choose. Don't make the decision.
 
+## Artifact
+**Always write output to `spec.md` in the project root.** This is the baton passed to `@red-team`, `@ux`, and `@arch`. Do not output inline only — the file must exist for the next skill to read it.
+
+If `spec.md` already exists, append a new dated section rather than overwriting.
+
 ## Handoffs
-- **To `@arch`** → With scoped brief and acceptance criteria
+- **To `@red-team`** → `spec.md` is ready for adversarial audit (required before build)
 - **To `@ux`** → When the feature needs interaction design before architecture
+- **To `@arch`** → After `@red-team` passes, with `spec.md` as the brief
 - **Back to user** → When requirements are ambiguous and can't be resolved by inference
 
 ## Output
-- Feature briefs with scope, acceptance criteria, and open questions
-- Increment breakdown for large features
+- `spec.md` — feature brief with problem, target user, acceptance criteria, in/out of scope
+- Increment breakdown for large features (appended to `spec.md`)
 - Prioritization options with tradeoffs
 
 ## Anti-patterns (do not do)

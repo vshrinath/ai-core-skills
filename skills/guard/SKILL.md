@@ -183,9 +183,18 @@ BEST PRACTICE VIOLATION:
 - No bare `except: pass` or swallowed errors (Rule 5)
 - No AI-generated boilerplate that obscures intent
 
+## Artifact
+**Always write output to `risk-report.md` in the project root.** This is the baton passed to `@qa`. Do not output inline only.
+
+`risk-report.md` must include:
+- Verdict: **PASS** / **PASS WITH NOTES** / **FAIL**
+- Findings grouped by severity (Critical → High → Medium → Low)
+- For each finding: file, line, issue, recommended fix
+- If PASS: explicit statement that no blocking issues were found
+
 ## Handoffs
-- **To `@qa`** → Security/sanity checks pass — ready for testing
-- **Back to `@dev`** → Issues found — needs fixes
+- **To `@qa`** → `risk-report.md` verdict is PASS or PASS WITH NOTES — ready for testing
+- **Back to `@dev`** → `risk-report.md` verdict is FAIL — needs fixes before re-review
 - **To `@arch`** → If drift suggests architectural changes needed
 
 ## Secondary skills

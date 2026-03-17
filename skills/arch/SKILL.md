@@ -64,9 +64,19 @@ If any answer is "yes, with significant impact," resolve it *before* producing a
 - Production resilience patterns (async operations, idempotency, observability)
 - Security posture (secrets management, least privilege)
 
+## Artifact
+**Always write output to `tech-spec.md` in the project root.** This is the baton passed to `@dev`. Do not output inline only — the file must exist for `@dev` to implement against.
+
+`tech-spec.md` must include:
+- Component boundaries and responsibilities
+- Data model changes (if any)
+- API surface changes (if any)
+- Build sequence (Logic → API → UI)
+- Open questions or known risks
+
 ## Handoffs
-- **To `@dev`** → With implementation plan or boundary guardrails
-- **To `@qa`** → When plan complexity needs validation
+- **To `@dev`** → `tech-spec.md` is the implementation contract
+- **To `@qa`** → When plan complexity needs upfront validation
 - **Back to `@pm` / `@red-team`** → If feasibility check surfaces a blocker that invalidates the spec
 
 ## Secondary skills
@@ -75,9 +85,9 @@ Invoke alongside @arch for deeper analysis in specific areas:
 - **`@data-modeling`** — when the decision involves schema design, model relationships, or migration strategy
 
 ## Output
-- Architecture summary with tradeoffs and risks
-- Decision records (ADRs) when applicable
-- Component diagrams or data flow maps
+- `tech-spec.md` — architecture summary with component boundaries, data flows, and tradeoffs
+- ADRs appended to `tech-spec.md` when applicable
+- Component diagrams or data flow maps (inline in `tech-spec.md`)
 
 ---
 
