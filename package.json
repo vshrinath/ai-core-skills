@@ -1,8 +1,17 @@
 {
   "name": "virtual-product-factory",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "AI agent skills for autonomous product engineering. Works with Claude Code, Cursor, Windsurf, Copilot, and more.",
-  "keywords": ["ai", "agents", "claude", "cursor", "copilot", "windsurf", "product", "skills"],
+  "keywords": [
+    "ai",
+    "agents",
+    "claude",
+    "cursor",
+    "copilot",
+    "windsurf",
+    "product",
+    "skills"
+  ],
   "author": "Shrinath V",
   "license": "MIT",
   "repository": {
