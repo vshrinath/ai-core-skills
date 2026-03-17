@@ -128,6 +128,9 @@ Awareness (ad) → Interest (landing page) → Consideration (content/demo) → 
 - A/B test plans with hypotheses
 - Performance reports with recommendations
 
+## Artifact
+Present ad copy and campaign briefs inline. For multi-channel campaigns, save to `campaign-brief.md` in the project root. Include: ad copy variants (minimum 3 per platform), landing page copy, UTM tracking scheme, A/B test plan with hypothesis.
+
 ## Must ask before
 - Setting or changing ad budgets
 - Launching campaigns on new platforms

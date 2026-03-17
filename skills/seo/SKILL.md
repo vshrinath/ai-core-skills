@@ -115,6 +115,12 @@ compatibility:
 - Structured data markup
 - Search performance summaries
 
+## Artifact
+Implement SEO changes directly in code (meta tags, structured data, sitemaps). For audits, write findings to `seo-report.md` in the project root. Include:
+- Meta tags implemented or changed
+- Structured data schemas added
+- Technical issues found and fixed
+
 ## Must ask before
 - Changing URL structures on existing published pages (redirects needed)
 - Modifying robots.txt or sitemap configuration

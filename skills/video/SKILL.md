@@ -120,6 +120,12 @@ Feature Name (text-card, hero, 3s) → Demo (feature-reveal, 12–15s)
 - Rendered videos in `out/` or `renders/`
 - Capture assets in `public/captures/`
 
+## Artifact
+- Remotion compositions registered in `src/Root.tsx`
+- Script scenes written to `src/script.ts`
+- Rendered videos in `out/` or `renders/` (gitignored)
+- Capture assets in `public/captures/` (gitignored)
+
 ## Must ask before
 - Adding new npm dependencies to the Remotion pipeline
 - Changing `remotion.config.js`

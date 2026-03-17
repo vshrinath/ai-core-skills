@@ -5,7 +5,7 @@ license: MIT
 metadata:
   category: coding
   handoff-from:
-    - spec
+    - pm
     - red-team
   handoff-to:
     - dev

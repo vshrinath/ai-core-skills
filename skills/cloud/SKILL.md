@@ -72,6 +72,12 @@ compatibility:
 - Only expose load balancers or API gateways to the public internet (public subnets).
 - Use Web Application Firewalls (WAF) to protect against common web exploits.
 
+## Artifact
+Write IaC configurations to the project's infrastructure directory (e.g., `terraform/`, `infra/`, `cloud/`). For audits, append findings to `cloud-audit.md` in the project root. Each output should include:
+- Resource definitions (compute, networking, storage)
+- Security configuration (IAM, secrets, network rules)
+- Environment-specific variable files
+
 ## Checklist
 
 - [ ] Is all infrastructure defined in code and version-controlled?

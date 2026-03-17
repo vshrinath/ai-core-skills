@@ -137,6 +137,9 @@ Please review assumptions before merging.
 
 ---
 
+## Artifact
+`@confidence-scoring` is an in-place meta skill — document assumptions and confidence level inline in commit messages, PR descriptions, or as a comment in `implementation-notes.md`. No separate file is created unless explicitly requested.
+
 ## Checklist: Before Proceeding
 
 - [ ] Confidence level assessed (0-100%)

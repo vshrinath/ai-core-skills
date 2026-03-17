@@ -79,6 +79,14 @@ Every interactive element must be reachable and usable via keyboard alone.
 3. Error messages must be linked to the input via `aria-describedby`.
 4. Use `aria-invalid="true"` when the input has an error.
 
+## Artifact
+`@accessibility` is an in-place annotator — fixes are made directly in source files. For audits, document findings as inline code review comments or append to `risk-report.md`. Include WCAG violations with severity (A, AA, AAA), specific file/line, and fix applied or recommended.
+
+## Handoffs
+- **From `@ux`** or **`@dev`** → When UI components need accessibility verification
+- **To `@guard`** → Accessibility findings appended to `risk-report.md`
+- **To `@qa`** → For keyboard and screen reader testing
+
 ## Checklist
 
 - [ ] Can the entire flow be completed using only a keyboard?

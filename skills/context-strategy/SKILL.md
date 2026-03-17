@@ -167,6 +167,9 @@ Summary:
 
 ---
 
+## Artifact
+`@context-strategy` is an in-place meta skill — no file output. It produces context summaries directly in the conversation to be carried forward. When context is full, write a session summary to `memory.md` (via `@memory`) before starting a new session.
+
 ## Codebase Navigation Checklist
 
 ### Before Loading Files

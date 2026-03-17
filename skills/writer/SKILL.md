@@ -75,6 +75,9 @@ compatibility:
 - Platform-adapted variants from a single source piece
 - Style notes when deviating from brand voice (with justification)
 
+## Artifact
+Present draft content inline. For longer pieces, save to the appropriate project location (e.g., `content/`, `docs/`). Always provide at least 2 headline/subject line options and platform-adapted variants when content spans multiple channels.
+
 ## Must ask before
 - Changing the brand voice or tone guidelines
 - Writing content that takes a political or controversial stance

@@ -1,6 +1,6 @@
 ---
 name: debugging
-description: Investigates bugs with systematic root cause analysis using hypothesis testing and hypothesis testing. Does not fix — diagnoses and hands off. WHEN to use it - bug reports in production or development, unexpected behavior or errors, intermittent failures, performance degradation, or after failed deployment.
+description: Investigates bugs with systematic root cause analysis using hypothesis testing. Does not fix — diagnoses and hands off. WHEN to use it - bug reports in production or development, unexpected behavior or errors, intermittent failures, performance degradation, or after failed deployment.
 license: MIT
 metadata:
   category: coding
