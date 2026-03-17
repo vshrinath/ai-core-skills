@@ -1,6 +1,6 @@
 {
   "name": "virtual-product-factory",
-  "version": "2.0.0",
+  "version": "4.0.0",
   "description": "AI agent skills for autonomous product engineering. Works with Claude Code, Cursor, Windsurf, Copilot, and more.",
   "keywords": [
     "ai",
