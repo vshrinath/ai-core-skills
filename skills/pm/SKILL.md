@@ -43,8 +43,16 @@ compatibility:
 
 ## Scoping process
 
+### Step 0: Load project state
+
+Check whether `.project/requirements.md` exists.
+- If it exists → read it. Carry forward any open questions and out-of-scope decisions already recorded. Do not re-ask what is already answered.
+- If it does not exist → note that `@project` will need to initialize state after scoping is complete.
+
 ### Step 1: Clarify intent
-Before writing anything, ask:
+
+**DO NOT write the brief until every question below is answered. Ask them one at a time and wait for the user's reply before proceeding to the next.**
+
 - Who is this for? (user type, not "everyone")
 - What problem does this solve? (not what feature they want)
 - How will we know it works? (measurable outcome)
@@ -89,6 +97,26 @@ Each increment must:
 - Be testable in isolation
 - Take no more than 1-2 days of dev work
 
+### Step 4: Write project state
+
+**DO NOT hand off to `@arch` until this step is complete.**
+
+Write the scoped output to the project state files:
+
+1. Write the problem statement, target user, success criteria, and scope to `.project/requirements.md`
+2. Write each user story (with acceptance criteria) to `.project/stories.md` using the format:
+   ```
+   ## S-XXX: [Story title]
+   As a [user], I want [action] so that [outcome].
+
+   ### Acceptance criteria
+   - [ ] [Testable condition]
+   ```
+3. Update the status summary line at the top of `stories.md`: `Status: 0/N complete`
+4. If `.project/` does not exist, invoke `@project` to initialize it first
+
+Confirm to the user: "Project state written to `.project/`. Ready to hand off to `@arch`."
+
 ## Rules
 
 ### On scope
@@ -126,9 +154,10 @@ Let the user choose. Don't make the decision.
 If `spec.md` already exists, append a new dated section rather than overwriting.
 
 ## Handoffs
+- **To `@metrics`** → After writing the brief, to define the north star metric and instrumentation spec before `@arch` begins. The success threshold from `@metrics` feeds back into acceptance criteria.
 - **To `@red-team`** → `spec.md` is ready for adversarial audit (required before build)
 - **To `@ux`** → When the feature needs interaction design before architecture
-- **To `@arch`** → After `@red-team` passes, with `spec.md` as the brief
+- **To `@arch`** → After `@red-team` passes, with `spec.md` and `.project/metrics.md` as the brief
 - **Back to user** → When requirements are ambiguous and can't be resolved by inference
 
 ## Output
