@@ -273,6 +273,17 @@ If the project is inconsistent, match the pattern in the file you're editing, no
 
 ---
 
+## RULE 14: DESIGN FOR AGENT VISIBILITY (AXI)
+
+**Build tools and observability specifically for AI agents, not just humans.**
+
+- **Agent CLIs**: Build lightweight, read-only CLIs (e.g., `./cli <domain> list`) that output dense, structured TOON (Task-Oriented Object Notation) formats (YAML/JSON). Agents should use these instead of writing raw database queries or making complex API calls.
+- **Evidence Folders**: When building complex data pipelines (parsing, AI transformations, processing), build test harnesses that dump intermediate artifacts to a local `.evidence/` folder. Never force agents to "test in the dark" — give them raw text to inspect.
+- **Ambient Context**: Build a lightweight status script (`./status`) that instantly injects high-signal, zero-boot workspace state without requiring slow UI or network hops.
+- **Physical Guardrails**: Rely heavily on pre-commit hooks and CI/CD to physically block agents from bypassing `CHANGELOG.md` rules, breaking types, or ignoring conventions. Fail loud at commit time.
+
+---
+
 ## SKILLS SYSTEM
 
 This project uses role-based skills for AI-assisted development. Load only the skills you need for the current task.

@@ -62,6 +62,7 @@
 
 | Skill | What it does | Produces |
 |-------|-------------|---------|
+| [`@axi`](skills/axi/SKILL.md) | Integrates live observability (CLIs, status scripts, evidence folders) for agent execution. | Executable CLIs/harnesses |
 | [`@memory`](skills/memory/SKILL.md) | Persists agent state, decisions, and execution plans across sessions. | `memory.md` (chronological log) |
 | [`@confidence-scoring`](skills/confidence-scoring/SKILL.md) | Assesses confidence level and risk before acting on low-certainty tasks. | Confidence report (inline) |
 | [`@context-strategy`](skills/context-strategy/SKILL.md) | Manages limited context window — decides what to load and what to release. | Pruned context summary |

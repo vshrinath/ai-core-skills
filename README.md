@@ -21,6 +21,8 @@ VPF started as an abstraction from solving this problem on real projects. The so
 
 The artifact chain (`spec.md → tech-spec.md → implementation-notes.md → risk-report.md`) acts as a state machine: any tool that picks up the project can detect where it is in the pipeline and proceed without being retold the full history.
 
+However, markdown files only solve the *planning* phase. For the *execution* phase, VPF integrates the **Agent eXperience Interface (AXI)**. AXI dictates that any real-world project must also build dynamic observability hooks (read-only CLIs, status scripts, evidence folders) so agents can debug live state without flying blind.
+
 ---
 
 ## ⚡ Quick Start
@@ -63,9 +65,10 @@ For setup instructions, see [Integration & Onboarding](#-integration--onboarding
  │ @cloud                │   │ @writer               │   │ 6. META OFFICE        │
  │ @cicd                 │   │ @seo                  │   │    (Agent Cognition)  │
  │ @deployment           │   │ @perf                 │   ├───────────────────────┤
- └───────────────────────┘   │ @video-ai             │   │ @memory               │
-                             │ @video                │   │ @error-recovery       │
-                             └───────────────────────┘   │ @confidence-scoring   │
+ └───────────────────────┘   │ @video-ai             │   │ @axi                  │
+                             │ @video                │   │ @memory               │
+                             └───────────────────────┘   │ @error-recovery       │
+                                                         │ @confidence-scoring   │
                                                          │ @context-strategy     │
                                                          └───────────────────────┘
 ```
@@ -102,6 +105,7 @@ For setup instructions, see [Integration & Onboarding](#-integration--onboarding
 | **[@perf](skills/perf/SKILL.md)** | Growth Studio | (Marketing Perf) Tracks analytics, conversion hooks, and growth metrics. |
 | **[@video-ai](skills/video-ai/SKILL.md)** | Growth Studio | Scripts and generates AI-driven video assets or feature walk-throughs. |
 | **[@video](skills/video/SKILL.md)** | Growth Studio | General video editing, pacing, and programmatic video creation (e.g. Remotion). |
+| **[@axi](skills/axi/SKILL.md)** | Meta Office | Integrates live observability (CLIs, status scripts, evidence folders) for agent execution. |
 | **[@memory](skills/memory/SKILL.md)** | Meta Office | Maintains a persistent chronological log (`memory.md`) across multiple agent sessions. |
 | **[@error-recovery](skills/error-recovery/SKILL.md)** | Meta Office | Steps back when stuck, analyzes failure loops, and proposes alternative solutions. |
 | **[@confidence-scoring](skills/confidence-scoring/SKILL.md)** | Meta Office | Forces the agent to explicitly state its confidence level before making risky assumptions. |
